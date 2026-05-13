@@ -1,0 +1,978 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Legora Enablement Training — Assessment</title>
+<style>
+  :root{
+    --bg:#f4faf5;
+    --bg-2:#ffffff;
+    --ink:#0e2c1e;
+    --muted:#5b7b6a;
+    --line:#dbeadf;
+    --brand:#2bbd6a;
+    --brand-2:#19a35a;
+    --accent:#0e6b3a;
+    --good:#1ea65d;
+    --bad:#e25555;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:radial-gradient(1200px 800px at 10% -10%, #d6f0de 0%, transparent 60%), radial-gradient(1000px 700px at 110% 110%, #e9f7ee 0%, transparent 55%), var(--bg);color:var(--ink);font-family:"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;min-height:100vh;}
+  .wrap{max-width:780px;margin:0 auto;padding:32px 22px 80px;}
+  .brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.4px;font-size:14px;color:var(--muted);text-transform:uppercase;}
+  .brand .dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,var(--brand),var(--brand-2));box-shadow:0 0 18px var(--brand);}
+  h1{font-size:34px;line-height:1.15;margin:18px 0 10px;font-weight:800;letter-spacing:-.5px}
+  h1 .accent{background:linear-gradient(90deg,var(--brand-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;}
+  h2{font-size:22px;margin:0 0 12px;font-weight:700}
+  p{color:var(--muted);line-height:1.55;}
+  .card{background:#ffffff;border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:0 8px 28px -18px rgba(14,44,30,.18);}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .35s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  label{display:block;font-size:13px;color:var(--muted);margin:14px 0 6px;text-transform:uppercase;letter-spacing:.5px}
+  input[type=text],input[type=email]{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:#fbfffc;color:var(--ink);font-size:16px;outline:none;transition:border .2s, box-shadow .2s}
+  input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(31,122,77,.3)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;border:none;border-radius:999px;padding:14px 22px;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 30px -10px rgba(31,122,77,.55);transition:transform .15s ease, box-shadow .15s ease}
+  .btn:hover{transform:translateY(-1px);box-shadow:0 14px 36px -10px rgba(95,212,154,.45)}
+  .btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn.secondary{background:#ffffff;box-shadow:none;border:1px solid var(--line);color:var(--ink)}
+  .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+  .modules{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  @media (max-width:620px){.modules{grid-template-columns:1fr}}
+  .mod{cursor:pointer;border:1px solid var(--line);border-radius:16px;padding:18px;background:#ffffff;transition:border .2s, transform .15s, background .2s, box-shadow .2s;text-align:left;box-shadow:0 4px 16px -12px rgba(14,44,30,.18);}
+  .mod:hover{border-color:var(--brand);transform:translateY(-2px);background:rgba(95,212,154,.07)}
+  .mod .num{font-size:12px;letter-spacing:1.4px;color:var(--brand-2);font-weight:700;text-transform:uppercase}
+  .mod .title{font-size:17px;font-weight:700;margin:4px 0 6px}
+  .mod .desc{font-style:italic;color:var(--muted);font-size:13px;line-height:1.4}
+  .rules{margin:18px 0 0;padding:16px 18px;border-radius:12px;background:#eef9f1;border:1px solid #cce6d4}
+  .rules h3{margin:0 0 8px;font-size:13px;letter-spacing:1px;color:var(--accent);text-transform:uppercase}
+  .rules ul{margin:0;padding-left:18px;color:var(--ink);font-size:14px;line-height:1.7}
+  .progress{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);letter-spacing:1.2px;text-transform:uppercase;margin-bottom:14px}
+  .bar{flex:1;height:6px;background:#e3efe7;border-radius:999px;overflow:hidden}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--brand),var(--brand-2));transition:width .35s ease;border-radius:999px}
+  .qnum{font-size:13px;color:var(--brand-2);letter-spacing:1.6px;font-weight:700;text-transform:uppercase;margin-bottom:4px}
+  .q{font-size:22px;font-weight:700;line-height:1.3;margin-bottom:22px}
+  .opts{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+  .opt{cursor:pointer;border:1px solid var(--line);border-radius:14px;padding:14px 16px;background:#fbfffc;display:flex;gap:12px;align-items:flex-start;transition:border .15s, background .15s, transform .12s}
+  .opt:hover{border-color:var(--brand);background:rgba(95,212,154,.06)}
+  .opt .letter{width:28px;height:28px;border-radius:50%;background:#e8f3ec;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex:0 0 28px;color:var(--ink)}
+  .opt.selected{border-color:var(--brand);background:rgba(95,212,154,.15)}
+  .opt.correct{border-color:var(--good);background:#e6f7ed}
+  .opt.correct .letter{background:var(--good);color:#ffffff}
+  .opt.wrong{border-color:var(--bad);background:#fdebeb}
+  .opt.wrong .letter{background:var(--bad);color:#ffffff}
+  .opt[disabled]{cursor:default}
+  .feedback{margin-top:14px;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.5;display:none}
+  .feedback.show{display:block;animation:fade .25s ease}
+  .feedback.good{background:#e6f7ed;border:1px solid #b6e5c4;color:#0e4a2a}
+  .feedback.bad{background:#fdebeb;border:1px solid #f3c6c6;color:#7a1f1f}
+  .nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px}
+  .score-pill{font-size:13px;font-weight:700;color:var(--muted);background:#ffffff;border:1px solid var(--line);padding:8px 14px;border-radius:999px}
+  .score-pill b{color:var(--accent)}
+  .reveal{font-size:48px;font-weight:800;letter-spacing:-1px;text-align:center;margin:8px 0 0}
+  .reveal .pct{background:linear-gradient(90deg,var(--brand-2),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;font-size:96px;display:block;line-height:1}
+  .badge{display:inline-block;padding:8px 16px;border-radius:999px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;font-size:12px;margin-top:14px}
+  .badge.gold{background:linear-gradient(135deg,#bdf09a,#2bbd6a);color:#0a1a0e}
+  .badge.silver{background:linear-gradient(135deg,#cfe4d6,#5b7b6a);color:#06140f}
+  .badge.bronze{background:linear-gradient(135deg,#e0b88a,#a06a35);color:#1a0a05}
+  .badge.try{background:#f0f6f2;color:var(--ink);border:1px solid var(--line)}
+  .summary{margin:20px 0;padding:18px;border:1px solid var(--line);border-radius:14px;background:#f7fbf8;font-size:14px;line-height:1.6;color:var(--muted);white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;max-height:240px;overflow:auto;text-align:left}
+  .center{text-align:center}
+  .small{font-size:13px;color:var(--muted)}
+  .err{color:#9a2929;font-size:13px;margin-top:6px;display:none}
+  .err.show{display:block}
+  .footer{margin-top:30px;text-align:center;font-size:12px;color:var(--muted);letter-spacing:.6px}
+  .lock{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);background:#ffffff;padding:6px 12px;border-radius:999px;border:1px solid var(--line)}
+  .mod-meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+  .mod-meta .tag{font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
+  /* Timer */
+  .timer-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
+  .timer{font-variant-numeric:tabular-nums;font-weight:700;font-size:15px;background:#ffffff;border:1px solid var(--line);border-radius:999px;padding:8px 14px;display:inline-flex;align-items:center;gap:8px;color:var(--ink)}
+  .timer .ico{width:8px;height:8px;border-radius:50%;background:var(--good)}
+  .timer.warning{background:#fff5e6;border-color:#f4c987;color:#7a4a0c}
+  .timer.warning .ico{background:#e69b1a}
+  .timer.danger{background:#fdebeb;border-color:#f3c6c6;color:#7a1f1f;animation:pulse 1s ease-in-out infinite}
+  .timer.danger .ico{background:var(--bad)}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  /* Time-up overlay */
+  .overlay{position:fixed;inset:0;background:rgba(14,44,30,.55);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:24px;z-index:50}
+  .overlay.show{display:flex;animation:fade .25s ease}
+  .overlay .modal{background:#fff;border-radius:18px;padding:28px;max-width:480px;width:100%;text-align:center;box-shadow:0 24px 60px -20px rgba(14,44,30,.45);border:1px solid var(--line)}
+  .overlay .modal h2{margin:6px 0 8px;font-size:24px}
+  .overlay .modal p{color:var(--muted);margin:0 0 18px}
+  .overlay .modal .emoji{font-size:42px;line-height:1}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ============ WELCOME ============ -->
+<section id="panel-welcome" class="panel active">
+  <div class="brand"><span class="dot"></span> Legora Enablement Training</div>
+  <h1>LET <span class="accent">Assessment</span></h1>
+  <p>Welcome — and congrats on completing a Legora Enablement Training (LET) module. This is a short, fun checkpoint to confirm that what was taught actually landed, and that you're equipped to go off and deliver this training yourself.</p>
+  <div class="card" style="margin-top:18px">
+    <h2>How it works</h2>
+    <p>Pick the module you just finished. You'll be asked between 8 and 12 questions, mostly multiple choice, designed to take you 5–10 minutes. At the end you'll get a score, a fun rating, and two pre-filled emails — one to yourself, one to the enablement team — so the results are captured.</p>
+    <p style="font-size:13px;font-style:italic;color:var(--muted);margin-top:-6px">A quick heads-up on length: Modules 1, 3 and 4 sit around 8–10 questions. Module 2 (Legora Foundations) runs 12 — there's just a lot of ground to cover across the Assistant's four source types, Tabular Review and the Word Add-In, so it earns its extra couple of minutes.</p>
+    <div class="rules">
+      <h3>Four rules</h3>
+      <ul>
+        <li>Once you start, <b>you can't go back to change an answer</b>.</li>
+        <li>You can't pause or resume — give each question your best shot.</li>
+        <li><b>Each module has a time limit</b> (8–12 minutes). If it runs out, the assessment ends and you have to start again from the beginning.</li>
+        <li>Have fun. This isn't pass/fail — it's a confidence check.</li>
+      </ul>
+    </div>
+    <label for="trainee-name">Your name</label>
+    <input id="trainee-name" type="text" placeholder="e.g. Alex Morgan" autocomplete="name" />
+    <div id="name-err" class="err">Please enter your name to continue.</div>
+    <div class="row">
+      <button class="btn" id="to-modules">Choose a module →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MODULE PICKER ============ -->
+<section id="panel-modules" class="panel">
+  <div class="brand"><span class="dot"></span> Pick the module you just finished</div>
+  <h1>Which module <span class="accent">did you just complete?</span></h1>
+  <p>Each assessment covers one module. Choose the one you've just been trained on — what's in italics underneath is a one-line reminder of what that session was about.</p>
+
+  <div class="modules">
+    <button class="mod" data-module="1">
+      <div class="num">Module 1</div>
+      <div class="title">AI Foundations</div>
+      <div class="desc">Foundational principles of GenAI and LLMs — probabilistic vs deterministic, tokens, context windows, hallucination, and the engine-vs-car mental model.</div>
+      <div class="mod-meta"><span class="tag">⏱ 10 min limit</span><span class="tag">10 questions</span></div>
+    </button>
+    <button class="mod" data-module="2">
+      <div class="num">Module 2</div>
+      <div class="title">Legora Foundations</div>
+      <div class="desc">The core Legora features — Assistant (Sources + Create), Tabular Review, and the Word Add-In — how they work and when to use which.</div>
+      <div class="mod-meta"><span class="tag">⏱ 12 min limit</span><span class="tag">12 questions</span></div>
+    </button>
+    <button class="mod" data-module="3">
+      <div class="num">Module 3</div>
+      <div class="title">Advanced Features</div>
+      <div class="desc">End-to-end Workflows, Playbooks, Editor &amp; Word Edits, plus the KERNEL prompting framework and the six single-action step types.</div>
+      <div class="mod-meta"><span class="tag">⏱ 10 min limit</span><span class="tag">10 questions</span></div>
+    </button>
+    <button class="mod" data-module="4">
+      <div class="num">Module 4</div>
+      <div class="title">Use Case Discovery</div>
+      <div class="desc">What makes a good (and bad) use case, the three levels of use-case maturity, design thinking and the impact/effort matrix for prioritisation.</div>
+      <div class="mod-meta"><span class="tag">⏱ 8 min limit</span><span class="tag">8 questions</span></div>
+    </button>
+  </div>
+
+  <div class="row" style="margin-top:24px">
+    <span class="lock">🔒 Once you click a module, the quiz begins — no back button</span>
+  </div>
+</section>
+
+<!-- ============ QUIZ ============ -->
+<section id="panel-quiz" class="panel">
+  <div class="timer-row">
+    <span class="timer" id="timer"><span class="ico"></span><span id="timer-text">--:--</span></span>
+    <span class="small" id="prog-label-top">Module —</span>
+  </div>
+  <div class="progress">
+    <span id="prog-label">Module —</span>
+    <div class="bar"><i id="prog-bar" style="width:0%"></i></div>
+    <span id="prog-count">0 / 8</span>
+  </div>
+  <div class="card">
+    <div class="qnum" id="q-number">Question 1</div>
+    <div class="q" id="q-text">…</div>
+    <div class="opts" id="q-opts"></div>
+    <div class="feedback" id="q-feedback"></div>
+    <div class="nav">
+      <span class="score-pill">Score: <b id="score-now">0</b> / <span id="score-of">8</span></span>
+      <button class="btn" id="next-btn" disabled>Next →</button>
+    </div>
+  </div>
+  <p class="footer">No going back. No restart. Take a breath, pick your answer.</p>
+</section>
+
+<!-- ============ TIME-UP OVERLAY ============ -->
+<div id="overlay-timeup" class="overlay" role="dialog" aria-modal="true">
+  <div class="modal">
+    <div class="emoji">⏰</div>
+    <h2>Time's up!</h2>
+    <p id="timeup-line">The assessment timer ran out. As a refresher: you can't pause or resume mid-quiz — you'll need to start again from the beginning.</p>
+    <button class="btn" id="timeup-restart">Restart from welcome →</button>
+  </div>
+</div>
+
+<!-- ============ RESULTS ============ -->
+<section id="panel-results" class="panel">
+  <div class="brand"><span class="dot"></span> Assessment complete</div>
+  <h1 id="result-greeting">Nicely done, <span class="accent">friend</span>!</h1>
+  <div class="card center">
+    <div class="reveal"><span class="pct" id="result-pct">0%</span></div>
+    <div id="result-line" class="small" style="margin-top:8px">Module —</div>
+    <div id="result-badge"></div>
+    <p id="result-blurb" style="margin-top:14px">…</p>
+    <div class="summary" id="result-summary"></div>
+
+    <label for="trainee-email">Your email (where you'd like a copy of the results sent)</label>
+    <input id="trainee-email" type="email" placeholder="you@yourfirm.com" autocomplete="email" />
+    <div id="email-err" class="err">Please enter a valid email.</div>
+
+    <div class="row" style="justify-content:center">
+      <button class="btn" id="send-emails">📨 Send results (opens email)</button>
+      <button class="btn secondary" id="copy-results" type="button">📋 Copy results</button>
+    </div>
+    <p class="small" style="margin-top:12px">Two email drafts will open: one to you (<span id="show-trainee-email">—</span>), one to the enablement tracker (<span id="show-tracker-email">—</span>). Just hit send. If nothing pops up, use Copy results and paste into a new email.</p>
+  </div>
+  <p class="footer">Thank you for taking the time — this helps us make LET better.</p>
+</section>
+
+</div>
+
+<script>
+/* =========================================================
+   ASSESSMENT DATA
+   8 questions per module. Each: q, options [a,b,c,d], correctIndex, why (short explainer shown post-answer)
+========================================================= */
+const TRACKER_EMAIL = "enablement-tracker@legora.com"; // placeholder — swap before circulating
+
+const MODULES = {
+  1: {
+    name: "Module 1: AI Foundations",
+    timeLimit: 10 * 60, // seconds — ~60s/question
+    questions: [
+      {
+        q: "If you only remember one thing from Module 1 about LLMs, what is it?",
+        options: [
+          "They're always right when they sound confident",
+          "They're probabilistic, not deterministic",
+          "They have perfect memory of their training data",
+          "They search the live web in real time"
+        ],
+        a: 1,
+        why: "Module 1's stated takeaway: when you use an LLM you are working with a probabilistic system, not a deterministic one — the same input can produce different outputs, and that is fundamental, not a bug."
+      },
+      {
+        q: "In the module's \"engine vs car\" analogy, what plays the role of the engine?",
+        options: [
+          "Legora",
+          "The LLM (Claude, GPT, Gemini)",
+          "The user's prompt",
+          "The context window"
+        ],
+        a: 1,
+        why: "The LLM is the engine; Legora is the car built around it. Hence Legora's model-agnostic architecture — it doesn't bet on a single provider."
+      },
+      {
+        q: "Roughly how much of an English word does one token correspond to?",
+        options: [
+          "About 5 words",
+          "About 1 whole word",
+          "About three-quarters of a word",
+          "About a quarter of a word"
+        ],
+        a: 2,
+        why: "Rule of thumb from the module: 1 token ≈ ¾ of a word in English. The model only ever sees numbers — words are converted to tokens before anything else."
+      },
+      {
+        q: "Which architectural breakthrough — introduced in 2017 — made today's LLMs possible?",
+        options: [
+          "The Transformer",
+          "The convolutional neural network",
+          "The recurrent neural network",
+          "Reinforcement learning from human feedback"
+        ],
+        a: 0,
+        why: "The Transformer (Google, 2017) is the architecture underpinning every modern LLM. LLMs are 'statistical language models' built on it."
+      },
+      {
+        q: "A trainee asks: \"If I just paste the whole contract into the chat, that's the same as attaching it, right?\" What's the right answer?",
+        options: [
+          "Yes, identical — paste away",
+          "Pasting is actually better, it's faster",
+          "Attach, don't paste — and only include what's relevant",
+          "Only attach if the doc is longer than 50 pages"
+        ],
+        a: 2,
+        why: "Module 1 explicitly says: \"Attach documents instead of pasting their content.\" Pair that with the guiding principle — give the model everything it needs, and nothing it does not. Think relevance, not disclosure."
+      },
+      {
+        q: "What is the \"lost in the middle\" problem?",
+        options: [
+          "Documents stored in the middle of a Project become inaccessible",
+          "LLMs degrade at using information that sits in the middle of a long input",
+          "Tokens in the middle of a sentence are silently skipped",
+          "The middle layers of a neural network are the slowest"
+        ],
+        a: 1,
+        why: "Effective performance degrades well before the context-window ceiling — info buried in the middle of a long input is less reliably used. Bigger context isn't always better."
+      },
+      {
+        q: "Module 1 quotes a 2026 survey definition of hallucination. It's content that is…",
+        options: [
+          "Always grammatically broken and easy to spot",
+          "Generated only when the model lacks training on the topic",
+          "Fluent and syntactically correct but factually inaccurate or unsupported by evidence",
+          "Identical to the source document but mis-cited"
+        ],
+        a: 2,
+        why: "Verbatim from the module. The danger isn't garbled text — it's confident fluency plus factual error. That's why citations matter."
+      },
+      {
+        q: "Which of these is NOT one of the three parts of the recommended prompt structure?",
+        options: [
+          "Objective",
+          "Context",
+          "Output",
+          "Persona"
+        ],
+        a: 3,
+        why: "The three-part structure is Objective / Context / Output. Generic personas like \"I am a lawyer\" aren't needed — Legora already assumes legal context. Be specific about party roles instead."
+      },
+      {
+        q: "Module 1 distinguishes the \"Assistant pattern\" from the \"Agent pattern\". What's the difference?",
+        options: [
+          "Assistants are paid, Agents are free",
+          "Assistant = question → answer; Agent = task → plan → iterate → complete",
+          "Assistant runs locally, Agent runs in the cloud",
+          "Assistant uses one LLM, Agent uses several"
+        ],
+        a: 1,
+        why: "The Assistant pattern is single-turn Q&A. The Agent pattern works for long horizons in the background — task → plan → iterate → complete. Sub-agents then enable massively parallel work across Research, Drafting and Review."
+      },
+      {
+        q: "Module 1's capability timeline shows the \"horizon of work\" a single AI call can usefully act over. The trajectory is roughly…",
+        options: [
+          "2021 rules-based → 2023 prompts (seconds) → 2025 workflows (minutes) → 2026 end-to-end projects (hours)",
+          "Stable since 2020 — same capability, just faster",
+          "2023 hours → 2025 days → 2026 weeks",
+          "It's only ever been minutes — the rest is hype"
+        ],
+        a: 0,
+        why: "Module 1's closing chart: the time horizon for useful AI work has stretched from seconds (2023) to minutes (2025) to hours (2026). \"Parallelism changes the economics of legal work.\""
+      }
+    ]
+  },
+  2: {
+    name: "Module 2: Legora Foundations",
+    timeLimit: 12 * 60,
+    questions: [
+      {
+        q: "A trainee wants to test a sensitive prompt before sharing it with their team. Where should they work?",
+        options: [
+          "In a Project they own",
+          "In their Private Space",
+          "In the Organisation Database",
+          "Web Search — Legora anonymises everything"
+        ],
+        a: 1,
+        why: "Private Space is the personal sandbox — only accessible by you, designed for experimentation. You can't share documents from it, which is the point."
+      },
+      {
+        q: "When you run a Database Search, how many documents does Legora rank, and how many does it pull through for the answer?",
+        options: [
+          "Ranks 50, selects 25",
+          "Ranks 100, selects the top 30",
+          "Ranks 250, selects the top 100",
+          "Ranks 30, uses all of them"
+        ],
+        a: 1,
+        why: "Database Search ranks the 100 most relevant documents semantically, then uses the top 30 to generate results. It's not Ctrl+F — it's semantic ranking."
+      },
+      {
+        q: "How would you describe Tabular Review to a lawyer who's brand new to it?",
+        options: [
+          "A chronology timeline of events",
+          "A chat thread with each document as a different message",
+          "A grid — each row is a document, each column is a question. \"Excel for lawyers.\"",
+          "A folder of Word docs with citations attached"
+        ],
+        a: 2,
+        why: "Rows = documents, columns = questions. The product's working analogy is \"Excel for lawyers,\" with a 10,000-cell limit."
+      },
+      {
+        q: "Given the 10,000-cell limit, how many documents can you review against ONE column at a time?",
+        options: [
+          "1,000",
+          "10,000",
+          "100",
+          "Unlimited"
+        ],
+        a: 1,
+        why: "Cell math: 10,000 cells ÷ 1 column = 10,000 docs. 10 columns = 1,000 docs. 100 columns = 100 docs. Worth remembering when scoping a TR."
+      },
+      {
+        q: "A lawyer says: \"Let me Web Search for recent guidance on the Acme Corp IPO we're advising on.\" What's wrong with that?",
+        options: [
+          "Web Search shouldn't be used for regulatory guidance",
+          "The client name (\"Acme Corp\") should never be in a Web Search query",
+          "IPO research needs Deep Research instead",
+          "Nothing — Legora strips the client name automatically"
+        ],
+        a: 1,
+        why: "Web Search routes through Legora's backend and never sends the raw prompt — but the trainee shouldn't TYPE confidential client information into the query in the first place. That's the canonical bad example in the module."
+      },
+      {
+        q: "Deep Research can take 5–10 minutes (sometimes up to 40). If a trainee interrupts mid-output with \"Are you sure about that?\", what happens?",
+        options: [
+          "It re-runs from the start, fresh",
+          "It can actually INCREASE hallucinations — the model loses context from previous turns",
+          "It improves accuracy via a built-in self-check",
+          "It cancels and restarts faster"
+        ],
+        a: 1,
+        why: "Module 2 is explicit: don't challenge or interrogate Deep Research outputs — it's been found to increase hallucinations as the model loses context."
+      },
+      {
+        q: "The Word Add-In has three modes. Which lineup is right?",
+        options: [
+          "Edit = propose tracked changes • Ask = Q&A about the doc • Auto = Legora infers what's needed",
+          "Edit = changes only • Ask = generate a new doc • Auto = anonymise",
+          "Edit = translate • Ask = redline • Auto = summarise",
+          "Edit = run playbook • Ask = web search • Auto = workflow"
+        ],
+        a: 0,
+        why: "Edit / Ask / Auto. Plus a quick visual cue when in Edit mode: blue = additions, red strikethrough = deletions."
+      },
+      {
+        q: "When the Word Add-In applies tracked changes, whose name shows up as the author of those changes?",
+        options: [
+          "\"Legora AI\"",
+          "Your firm's name",
+          "The user, personally — it never reveals Legora was used",
+          "\"Anonymous\""
+        ],
+        a: 2,
+        why: "Tracked changes always show as coming from you personally. There's no option to attribute them to Legora or the firm — useful to know when a client will see the redline."
+      },
+      {
+        q: "A trainee uploads documents from iManage. Later, someone amends those documents in iManage. What happens in Legora?",
+        options: [
+          "Legora auto-syncs the changes",
+          "The uploads are read-only and changes don't auto-update — you have to manually re-sync",
+          "The documents become inaccessible until re-uploaded",
+          "Legora throws an error and locks the project"
+        ],
+        a: 1,
+        why: "iManage uploads are read-only and don't auto-update — manual \"sync selected\" required. (Also: access is governed by your existing iManage permissions, so an individual can never pull a document they couldn't already see.)"
+      },
+      {
+        q: "What kind of sources does Legora's Web Search prioritise?",
+        options: [
+          "Whatever ranks highest in Google",
+          "Wikipedia and Reddit, ranked by recency",
+          "Authoritative primary sources — government websites, regulatory guidance, law-firm thought leadership",
+          "Paid news sources only"
+        ],
+        a: 2,
+        why: "Web Search is tuned for legal use — it prioritises authoritative primary sources (gov, regulatory, law-firm thought leadership) over unverified ones like Wikipedia or Reddit. Routed through Exa.ai so the raw prompt never leaves Legora's backend."
+      },
+      {
+        q: "You set up a 200-column Tabular Review across 50 documents. What does Legora do automatically before running the rest?",
+        options: [
+          "Runs the first column to completion across all 50 documents",
+          "Runs the top ten rows automatically so you can verify quality before committing the rest",
+          "Runs the last row as a control",
+          "Nothing — you have to manually click \"Run All\""
+        ],
+        a: 1,
+        why: "Top 10 rows auto-run as a quality check — review the output, refine the prompt if needed, then run the full set. Saves the cell budget from a misfiring prompt."
+      },
+      {
+        q: "Why does Legora make you provide citations in Assistant answers (the little grey circles)?",
+        options: [
+          "For compliance reporting",
+          "To track usage by document",
+          "Because requiring the model to ground answers in citations reduces hallucinations",
+          "To bill clients per source consulted"
+        ],
+        a: 2,
+        why: "Citations as grey circles aren't just navigation — by requiring Legora to ground answers in source material, we materially reduce the chance of hallucination. Click one to jump to the highlighted passage (purple)."
+      }
+    ]
+  },
+  3: {
+    name: "Module 3: Advanced Features",
+    timeLimit: 10 * 60,
+    questions: [
+      {
+        q: "KERNEL is the prompting framework Module 3 teaches. What does it stand for?",
+        options: [
+          "Keep, Edit, Refine, Negotiate, Enrich, Loop",
+          "Keep it simple • Easy to verify • Reproducible results • Narrow scope • Explicit constraints • Logical structure",
+          "Knowledge, Evaluate, Refine, Notice, Embed, Learn",
+          "Keyword, Extract, Review, Narrate, Edit, Lock"
+        ],
+        a: 1,
+        why: "KERNEL: Keep it simple, Easy to verify, Reproducible results, Narrow scope, Explicit constraints, Logical structure. It's the spine of every advanced prompting tip in this module."
+      },
+      {
+        q: "Module 3 says you should break complex work into single-action steps. Which set of six verbs does the module use?",
+        options: [
+          "Compare / Annotate / Redact / Sign / Send / File",
+          "Summarise / Review / Research / Extract / Draft / Edit",
+          "Translate / Anonymise / Fill / Read / Quote / Cite",
+          "Build / Test / Iterate / Ship / Track / Refine"
+        ],
+        a: 1,
+        why: "Six single-action verbs. They map cleanly onto Legora features: Extract → TR/Database, Draft → Editor, Edit → Word Edits, Research → Legal/Web/Deep Research, etc."
+      },
+      {
+        q: "When should you reach for Editor vs Word Edits?",
+        options: [
+          "Editor for editing an existing doc; Word Edits for creating new ones",
+          "Editor for new documents in a live editable environment; Word Edits to edit an existing Word document",
+          "They're the same product with different branding",
+          "Editor is read-only; Word Edits is the collaborative version"
+        ],
+        a: 1,
+        why: "Editor generates NEW docs in a live editable environment (and preserves firm formatting). Word Edits is for editing an EXISTING Word document. Different jobs."
+      },
+      {
+        q: "Each rule in a Playbook is structured as…",
+        options: [
+          "Mandatory clause / Optional clause / Conditional clause",
+          "Starting position / Fallback positions (up to 3) / Not acceptable",
+          "Green / Amber / Red ratings",
+          "Open / Approved / Rejected statuses"
+        ],
+        a: 1,
+        why: "Starting position, then up to 3 fallbacks in descending preference, then 'not acceptable'. This is the structure every Playbook rule follows."
+      },
+      {
+        q: "How many times does Module 3 recommend you run a Playbook before deciding which version to work from?",
+        options: [
+          "Once is enough — pick the answer and move on",
+          "Until it hits a 100% match",
+          "3–4 times, then pick the version that best resembles the ideal",
+          "Continuously, in production"
+        ],
+        a: 2,
+        why: "Run 3–4 times, pick the best. Given the non-deterministic nature of LLMs, outputs will vary — same idea as the Midjourney pattern. Realistic expectation-setting matters."
+      },
+      {
+        q: "Which set of logical connectors does the module recommend inside Playbook rules?",
+        options: [
+          "WHILE / DO / UNTIL / BREAK",
+          "IF / ELSE / ONLY IF / OR / EITHER / THEN",
+          "AND / OR / NOT / XOR",
+          "UNLESS / EXCEPT / SAVE FOR / NOTWITHSTANDING"
+        ],
+        a: 1,
+        why: "IF / ELSE / ONLY IF / OR / EITHER / THEN — read well by LLMs and interpreted with higher accuracy. Avoid hedging words like 'preferably' and 'generally'."
+      },
+      {
+        q: "Where are Playbooks built, and where are they actually run?",
+        options: [
+          "Built in Word, run in Word",
+          "Built in the web app, run in the Word Add-in",
+          "Built in the Word Add-in, run on the web",
+          "Built and run only inside Tabular Review"
+        ],
+        a: 1,
+        why: "Built/edited in the web app (often using Workflow 12, the Playbook Rule Generator); run in the Word Add-in. Expect 6–18 hours of refinement before they're production-ready."
+      },
+      {
+        q: "If you only remember ONE rule when designing AI outputs for lawyers to review, the module says it should be…",
+        options: [
+          "Trust the model if it sounds confident",
+          "Make the output easy to review",
+          "Always rewrite from scratch to be safe",
+          "Only check the citations"
+        ],
+        a: 1,
+        why: "\"If you only remember one thing: make the output easy to review.\" Lawyer keeps responsibility, AI accelerates — the design has to support that handoff."
+      },
+      {
+        q: "Which of these best describes the anatomy of a Workflow?",
+        options: [
+          "Just a Tabular Review with a fancier name",
+          "A single mega-prompt run across many documents",
+          "Goal/outcome • Context documents • User inputs/variables • Steps with prompts and tool actions • Outputs",
+          "An automated Playbook running in the background"
+        ],
+        a: 2,
+        why: "A Workflow packages goal, context docs, user inputs, structured steps (prompts + tool actions) and outputs into a guided end-to-end process. Best for repeatable, structured, high-volume work — not one-off bespoke matters."
+      },
+      {
+        q: "Module 3's pseudo-code case study compared three prompts on a restated lease. Roughly what did the results show?",
+        options: [
+          "All three got 100% — pseudo-code makes no difference",
+          "Long verbose prompt 71% · Short prompt 62% · Short prompt + pseudo-code 100%",
+          "Pseudo-code performed worst because LLMs aren't compilers",
+          "Only the long prompt worked — pseudo-code confused the model"
+        ],
+        a: 1,
+        why: "A short prompt with pseudo-code (IF/ELSE + FOR loops) hit 100%, vs 62% for a short natural-language prompt and 71% for the long verbose one. Pseudo-code adds structure without verbosity."
+      }
+    ]
+  },
+  4: {
+    name: "Module 4: Use Case Discovery",
+    timeLimit: 8 * 60,
+    questions: [
+      {
+        q: "Which of these is NOT one of Module 4's criteria for a GOOD Legora use case?",
+        options: [
+          "A human lawyer stays in the loop",
+          "It's repeatable and recurring",
+          "It requires complex mathematical calculations",
+          "It has clear success criteria"
+        ],
+        a: 2,
+        why: "Math-heavy work is a RED FLAG, not a green one. Damages models, fee waterfalls, statistical work — those belong in Excel or specialised tools, not Legora."
+      },
+      {
+        q: "Which of these IS a red flag that a use case isn't right for Legora?",
+        options: [
+          "The same type of analysis repeated across different documents",
+          "Something done at least monthly",
+          "It requires perfection without any human review",
+          "Reviewing 50+ NDAs per month"
+        ],
+        a: 2,
+        why: "Zero-tolerance, no-human-review use cases are off-limits. Legal professional responsibility cannot be delegated to AI — the lawyer must stay in the loop."
+      },
+      {
+        q: "The module describes three levels of use-case maturity. Which set is correct?",
+        options: [
+          "Beginner / Intermediate / Advanced",
+          "Level 1 single-task • Level 2 multi-step workflows • Level 3 process transformation",
+          "Pilot / Rollout / Scale",
+          "Quick / Medium / Slow"
+        ],
+        a: 1,
+        why: "L1 = one action on one or a batch of docs (e.g. summarise a memo). L2 = chained AI actions feeding each other (e.g. extract → analyse → report). L3 = end-to-end process redesign with AI embedded throughout."
+      },
+      {
+        q: "Design thinking encourages thinking through challenges from which three perspectives?",
+        options: [
+          "Lawyer / Client / Regulator",
+          "People / Process / Technology",
+          "Cost / Quality / Time",
+          "Risk / Reward / Effort"
+        ],
+        a: 1,
+        why: "People / Process / Technology — the golden rule. Often the real problem is a process problem, not a task problem, and tech can't fix that alone."
+      },
+      {
+        q: "A team raises: \"Finding relevant clauses across our portfolio takes hours.\" In the Advanced Track style, how would you reframe that?",
+        options: [
+          "\"Our portfolio is just too big.\"",
+          "\"How might we help lawyers instantly locate relevant contractual language across all matters?\"",
+          "\"We should buy a clause library.\"",
+          "\"Lawyers need to work faster.\""
+        ],
+        a: 1,
+        why: "Turn pain points into \"How Might We\" opportunity statements. They open up problem-space thinking instead of jumping to a single solution."
+      },
+      {
+        q: "On the impact/effort matrix, a use case that's HIGH impact and LOW effort lives in which quadrant?",
+        options: [
+          "Time Wasters",
+          "Quick Wins",
+          "Fill-Ins",
+          "Large Projects"
+        ],
+        a: 1,
+        why: "Quick Wins = high impact, low effort. Prioritise these first. Large Projects = high impact, high effort. Fill-Ins = low/low. Time Wasters = low impact, high effort — actively avoid."
+      },
+      {
+        q: "Which 5-stage process does Module 4's discovery workshop adapt for legal teams?",
+        options: [
+          "Plan / Build / Test / Ship / Iterate",
+          "Empathise / Define / Ideate / Build / Test",
+          "Discover / Decide / Design / Deliver / Debrief",
+          "Listen / Brainstorm / Prototype / Pilot / Scale"
+        ],
+        a: 1,
+        why: "Classic design-thinking five-stage process: Empathise, Define, Ideate, Build, Test. The Simplified Track collapses Define & Ideate; the Advanced Track keeps them apart."
+      },
+      {
+        q: "After running a Use Case Discovery workshop, how quickly does the module recommend sharing the outputs?",
+        options: [
+          "Within 48 hours, while energy is high",
+          "Within a week",
+          "Within two weeks (aligned with pilot kickoff)",
+          "By the end of the quarter"
+        ],
+        a: 0,
+        why: "Share within 48 hours whilst energy is high — momentum is everything in change initiatives. Pilot kickoff for the top-priority use case follows within two weeks."
+      }
+    ]
+  }
+};
+
+/* =========================================================
+   STATE & FLOW
+========================================================= */
+const state = {
+  name: "",
+  email: "",
+  module: null,
+  qIndex: 0,
+  answers: [],     // {qIndex, picked, correct, ok}
+  score: 0,
+  done: false,
+  timerId: null,
+  secondsLeft: 0,
+  timedOut: false,
+};
+
+const $ = (id) => document.getElementById(id);
+const panels = ["welcome","modules","quiz","results"];
+function show(name){
+  panels.forEach(p => $("panel-"+p).classList.toggle("active", p===name));
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// Welcome → modules
+$("to-modules").addEventListener("click", () => {
+  const n = $("trainee-name").value.trim();
+  if(!n){ $("name-err").classList.add("show"); return; }
+  $("name-err").classList.remove("show");
+  state.name = n;
+  show("modules");
+});
+
+// Module pick
+document.querySelectorAll(".mod").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const m = parseInt(btn.dataset.module, 10);
+    startQuiz(m);
+  });
+});
+
+function startQuiz(m){
+  state.module = m;
+  state.qIndex = 0;
+  state.answers = [];
+  state.score = 0;
+  state.done = false;
+  state.timedOut = false;
+  $("score-of").textContent = MODULES[m].questions.length;
+  $("prog-label").textContent = MODULES[m].name;
+  $("prog-label-top").textContent = MODULES[m].name;
+  renderQ();
+  show("quiz");
+  startTimer(MODULES[m].timeLimit);
+}
+
+function fmtMMSS(s){
+  s = Math.max(0, s|0);
+  const m = (s/60)|0, r = s%60;
+  return (m<10?"0":"")+m+":"+(r<10?"0":"")+r;
+}
+function renderTimer(){
+  $("timer-text").textContent = fmtMMSS(state.secondsLeft);
+  const t = $("timer");
+  t.classList.remove("warning","danger");
+  if(state.secondsLeft <= 30) t.classList.add("danger");
+  else if(state.secondsLeft <= 90) t.classList.add("warning");
+}
+function startTimer(seconds){
+  stopTimer();
+  state.secondsLeft = seconds;
+  renderTimer();
+  state.timerId = setInterval(() => {
+    state.secondsLeft--;
+    renderTimer();
+    if(state.secondsLeft <= 0){
+      stopTimer();
+      handleTimeout();
+    }
+  }, 1000);
+}
+function stopTimer(){
+  if(state.timerId){ clearInterval(state.timerId); state.timerId = null; }
+}
+function handleTimeout(){
+  state.timedOut = true;
+  const mod = MODULES[state.module];
+  const answered = state.answers.length;
+  const total = mod.questions.length;
+  $("timeup-line").textContent = `The ${Math.round(mod.timeLimit/60)}-minute timer for ${mod.name} ran out. You answered ${answered} of ${total} questions. As a reminder, the assessment can't be paused or resumed — you'll need to start again from the beginning.`;
+  $("overlay-timeup").classList.add("show");
+}
+
+$("timeup-restart").addEventListener("click", () => {
+  $("overlay-timeup").classList.remove("show");
+  // Reset state and bounce back to welcome
+  state.module = null;
+  state.qIndex = 0;
+  state.answers = [];
+  state.score = 0;
+  state.done = false;
+  state.timedOut = false;
+  $("trainee-name").value = "";
+  show("welcome");
+});
+
+function renderQ(){
+  const mod = MODULES[state.module];
+  const q = mod.questions[state.qIndex];
+  $("q-number").textContent = "Question " + (state.qIndex+1);
+  $("q-text").textContent = q.q;
+  $("score-now").textContent = state.score;
+  $("prog-count").textContent = (state.qIndex+1) + " / " + mod.questions.length;
+  $("prog-bar").style.width = (((state.qIndex)/mod.questions.length)*100) + "%";
+  const opts = $("q-opts"); opts.innerHTML = ""; opts.classList.remove("locked");
+  const fb = $("q-feedback"); fb.classList.remove("show","good","bad"); fb.innerHTML = "";
+  const next = $("next-btn"); next.disabled = true;
+  next.textContent = (state.qIndex === mod.questions.length - 1) ? "See my results →" : "Next →";
+
+  const letters = ["A","B","C","D"];
+  q.options.forEach((opt, i) => {
+    const div = document.createElement("button");
+    div.className = "opt";
+    div.type = "button";
+    div.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
+    div.addEventListener("click", () => pick(i, div));
+    opts.appendChild(div);
+  });
+}
+
+function pick(i, el){
+  if(el.parentElement.classList.contains("locked")) return;
+  // lock all
+  const mod = MODULES[state.module];
+  const q = mod.questions[state.qIndex];
+  const allOpts = el.parentElement.querySelectorAll(".opt");
+  allOpts.forEach((o, idx) => {
+    o.setAttribute("disabled","true");
+    o.style.pointerEvents = "none";
+    if(idx === q.a) o.classList.add("correct");
+    if(idx === i && idx !== q.a) o.classList.add("wrong");
+  });
+  el.parentElement.classList.add("locked");
+  const ok = i === q.a;
+  if(ok) state.score++;
+  state.answers.push({ qIndex: state.qIndex, picked: i, correct: q.a, ok });
+  $("score-now").textContent = state.score;
+
+  const fb = $("q-feedback");
+  fb.classList.add("show");
+  fb.classList.add(ok ? "good" : "bad");
+  fb.innerHTML = (ok ? "<b>✓ Correct.</b> " : "<b>✗ Not quite.</b> ") + q.why;
+
+  $("next-btn").disabled = false;
+}
+
+$("next-btn").addEventListener("click", () => {
+  const mod = MODULES[state.module];
+  if(state.qIndex < mod.questions.length - 1){
+    state.qIndex++;
+    renderQ();
+  } else {
+    finish();
+  }
+});
+
+function finish(){
+  state.done = true;
+  stopTimer();
+  const mod = MODULES[state.module];
+  const total = mod.questions.length;
+  const pct = Math.round((state.score / total) * 100);
+  $("result-pct").textContent = pct + "%";
+  $("result-line").textContent = mod.name + " · " + state.score + " / " + total + " correct";
+  $("result-greeting").innerHTML = "Nicely done, <span class=\"accent\">"+escapeHtml(state.name.split(" ")[0])+"</span>!";
+  // badges
+  const b = $("result-badge"); b.innerHTML = "";
+  let badge, blurb;
+  if(pct === 100){ badge = "Gold — Legora Sensei 🥇"; blurb = "Perfect score. You're absolutely ready to deliver this module. Go forth and train."; b.className = "badge gold"; }
+  else if(pct >= 80){ badge = "Silver — Trainer Ready 🥈"; blurb = "Strong understanding across the board. A quick reread of anything you missed and you're good to go."; b.className = "badge silver"; }
+  else if(pct >= 60){ badge = "Bronze — Almost There 🥉"; blurb = "You've got the shape of it — worth a second pass over the bits you missed before you deliver the session."; b.className = "badge bronze"; }
+  else { badge = "Have another look 📚"; blurb = "No drama — flag this with your enablement lead and rewatch the module before you deliver it."; b.className = "badge try"; }
+  b.textContent = badge;
+  $("result-blurb").textContent = blurb;
+
+  // build the summary text (also used in emails)
+  const lines = [];
+  lines.push("LEGORA ENABLEMENT TRAINING — ASSESSMENT RESULT");
+  lines.push("------------------------------------------------");
+  lines.push("Name:      " + state.name);
+  lines.push("Module:    " + mod.name);
+  lines.push("Score:     " + state.score + " / " + total + "  (" + pct + "%)");
+  lines.push("Rating:    " + badge);
+  lines.push("Date:      " + new Date().toISOString().slice(0,10));
+  lines.push("");
+  lines.push("Answers:");
+  state.answers.forEach((a, i) => {
+    const q = mod.questions[i];
+    const letters = ["A","B","C","D"];
+    lines.push("  Q" + (i+1) + ".  " + (a.ok ? "✓" : "✗") + "  Picked " + letters[a.picked] + "  ·  Correct: " + letters[a.correct]);
+    lines.push("       " + q.q);
+  });
+  lines.push("");
+  lines.push("— Sent automatically from the LET Assessment widget.");
+  $("result-summary").textContent = lines.join("\n");
+
+  show("results");
+}
+
+function buildMailtoArtefacts(){
+  const mod = MODULES[state.module];
+  const total = mod.questions.length;
+  const pct = Math.round((state.score / total) * 100);
+  const subject = "[LET Assessment] " + state.name + " · " + mod.name + " · " + state.score + "/" + total + " (" + pct + "%)";
+  const body = $("result-summary").textContent;
+  return { subject, body };
+}
+function openMailto(to, subject, body){
+  const href = "mailto:" + encodeURIComponent(to) + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+  const a = document.createElement("a");
+  a.href = href; a.target = "_blank"; a.rel = "noopener";
+  a.style.display = "none";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => a.remove(), 100);
+}
+$("send-emails").addEventListener("click", () => {
+  const email = $("trainee-email").value.trim();
+  const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!isValid){ $("email-err").classList.add("show"); return; }
+  $("email-err").classList.remove("show");
+  state.email = email;
+  $("show-trainee-email").textContent = email;
+  $("show-tracker-email").textContent = TRACKER_EMAIL;
+
+  const { subject, body } = buildMailtoArtefacts();
+  openMailto(state.email, subject, body);
+  // Stagger the tracker mailto — some mail clients drop back-to-back triggers
+  setTimeout(() => openMailto(TRACKER_EMAIL, subject, body), 600);
+});
+
+$("copy-results").addEventListener("click", async () => {
+  const { subject, body } = buildMailtoArtefacts();
+  const recipients = (state.email || "your email") + ", " + TRACKER_EMAIL;
+  const text = "To: " + recipients + "\nSubject: " + subject + "\n\n" + body;
+  try {
+    await navigator.clipboard.writeText(text);
+    const b = $("copy-results"); const orig = b.textContent;
+    b.textContent = "✅ Copied"; setTimeout(() => b.textContent = orig, 1800);
+  } catch(e){
+    alert("Couldn't copy automatically — selecting the summary text below instead.");
+    const sel = window.getSelection(); sel.removeAllRanges();
+    const r = document.createRange(); r.selectNode($("result-summary")); sel.addRange(r);
+  }
+});
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, (c)=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
+}
+
+// Anti-restart safety: warn on tab close mid-quiz
+window.addEventListener("beforeunload", (e) => {
+  if($("panel-quiz").classList.contains("active") && !state.done){
+    e.preventDefault();
+    e.returnValue = "Your assessment is in progress — leaving will lose your answers.";
+    return e.returnValue;
+  }
+});
+</script>
+</body>
+</html>
