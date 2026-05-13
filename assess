@@ -102,6 +102,93 @@
   .overlay .modal h2{margin:6px 0 8px;font-size:24px}
   .overlay .modal p{color:var(--muted);margin:0 0 18px}
   .overlay .modal .emoji{font-size:42px;line-height:1}
+
+  /* True/False */
+  .tf-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px}
+  @media (max-width:520px){.tf-row{grid-template-columns:1fr}}
+  .tf-btn{cursor:pointer;border:2px solid var(--line);border-radius:14px;padding:22px;background:#fbfffc;font-weight:800;font-size:20px;color:var(--ink);transition:border .15s, background .15s, transform .12s}
+  .tf-btn:hover{border-color:var(--brand);background:rgba(95,212,154,.07);transform:translateY(-1px)}
+  .tf-btn .ic{font-size:30px;display:block;margin-bottom:6px}
+  .tf-btn.correct{border-color:var(--good);background:#e6f7ed;color:#0e4a2a}
+  .tf-btn.wrong{border-color:var(--bad);background:#fdebeb;color:#7a1f1f}
+  .tf-btn[disabled]{cursor:default}
+
+  /* Multi-select */
+  .multi-hint{font-size:12px;color:var(--muted);margin:-4px 0 10px;font-style:italic}
+  .multi .opt .letter{background:transparent;border:2px solid var(--line);width:22px;height:22px;flex:0 0 22px;font-size:11px;color:transparent}
+  .multi .opt.picked{border-color:var(--brand);background:rgba(95,212,154,.1)}
+  .multi .opt.picked .letter{background:var(--brand);border-color:var(--brand);color:#fff}
+  .multi .opt.picked .letter::after{content:"✓"}
+
+  /* Matching */
+  .match-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:8px}
+  .match-row{display:grid;grid-template-columns:1fr 14px 1.3fr;align-items:center;gap:10px}
+  @media (max-width:520px){.match-row{grid-template-columns:1fr;gap:6px}.match-row .arr{display:none}}
+  .match-left{padding:10px 14px;background:#fff;border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:14px}
+  .match-row .arr{color:var(--muted);text-align:center}
+  .match-select{padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);font-size:14px;cursor:pointer;width:100%}
+  .match-select:focus{border-color:var(--brand);outline:none}
+  .match-row.correct .match-select{border-color:var(--good);background:#e6f7ed}
+  .match-row.wrong .match-select{border-color:var(--bad);background:#fdebeb}
+
+  /* Ordering */
+  .order-label{font-size:11px;letter-spacing:1.4px;text-transform:uppercase;color:var(--muted);margin:4px 0}
+  .order-pool, .order-list{display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px dashed var(--line);border-radius:12px;background:#fbfffc;min-height:60px;margin-bottom:10px}
+  .order-list{background:#f3fbf6;border-style:solid;border-color:var(--line)}
+  .order-item{cursor:pointer;border:1px solid var(--line);background:#fff;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:600;transition:border .15s, background .15s, transform .12s;display:inline-flex;align-items:center;gap:8px}
+  .order-item:hover{border-color:var(--brand);transform:translateY(-1px)}
+  .order-list .order-item .pos{background:var(--brand);color:#fff;width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+  .order-item.locked{cursor:default}
+  .order-item.correct{border-color:var(--good);background:#e6f7ed}
+  .order-item.wrong{border-color:var(--bad);background:#fdebeb}
+
+  /* Check button — shown for non-instant types */
+  .check-row{margin-top:6px;display:none}
+  .check-row.show{display:block}
+  .check-row .btn{width:100%}
+
+  /* Completion stamps on module picker */
+  .mod{position:relative;overflow:hidden}
+  .mod.completed{border-color:var(--brand);background:#f3fbf6}
+  .mod.completed .num{color:var(--brand-2)}
+  .mod .stamp{display:none;position:absolute;top:14px;right:14px;border:2px solid var(--brand);color:var(--brand);font-weight:800;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;padding:5px 9px;border-radius:6px;transform:rotate(8deg);background:rgba(255,255,255,.85);line-height:1}
+  .mod.completed .stamp{display:inline-block}
+  .mod .completion-line{display:none;margin-top:8px;font-size:12px;font-weight:700;color:var(--brand)}
+  .mod.completed .completion-line{display:block}
+
+  /* All-done banner on module picker */
+  .all-done-banner{margin:18px 0 0;padding:18px 20px;border-radius:14px;background:linear-gradient(135deg,#e8f7ee,#d6f0de);border:1px solid var(--brand);display:none;align-items:center;gap:14px;flex-wrap:wrap;justify-content:space-between}
+  .all-done-banner.show{display:flex}
+  .all-done-banner .text{flex:1;min-width:220px}
+  .all-done-banner h3{margin:0 0 4px;color:var(--accent)}
+  .all-done-banner p{margin:0;font-size:13px}
+
+  /* Certificate */
+  .cert-frame{position:relative;background:linear-gradient(180deg,#fbfffc,#f1faf4);border:2px solid var(--brand);border-radius:18px;padding:36px 32px;text-align:center;box-shadow:0 24px 60px -28px rgba(14,44,30,.22)}
+  .cert-frame::before,.cert-frame::after{content:"";position:absolute;width:42px;height:42px;border:2px solid var(--brand-2);opacity:.6}
+  .cert-frame::before{top:10px;left:10px;border-right:0;border-bottom:0;border-top-left-radius:10px}
+  .cert-frame::after{bottom:10px;right:10px;border-left:0;border-top:0;border-bottom-right-radius:10px}
+  .cert-eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-2);font-weight:700}
+  .cert-title{font-size:30px;margin:8px 0 4px;font-weight:800;letter-spacing:-.5px;line-height:1.2}
+  .cert-sub{font-size:14px;color:var(--muted);margin:0 0 18px;font-style:italic}
+  .cert-name{font-size:36px;font-weight:800;background:linear-gradient(90deg,var(--brand),var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.5px;margin:6px 0 6px;font-family:"Georgia",serif;font-style:italic}
+  .cert-body{font-size:15px;line-height:1.65;color:var(--ink);text-align:left;margin:14px 0;padding:0 8px}
+  .cert-body p{margin:0 0 10px;color:var(--ink)}
+  .cert-scores{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin:16px 0}
+  @media (max-width:520px){.cert-scores{grid-template-columns:1fr}}
+  .cert-score{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:#ffffff;text-align:left;font-size:13px}
+  .cert-score .mn{display:block;font-weight:700;color:var(--ink)}
+  .cert-score .sn{color:var(--muted);font-size:12px}
+  .cert-seal{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:130px;height:130px;border:3px double var(--brand);border-radius:50%;margin:10px auto 8px;color:var(--brand);text-align:center;line-height:1.15;font-weight:800;letter-spacing:1px;text-transform:uppercase;font-size:10px;background:rgba(255,255,255,.6);transform:rotate(-6deg)}
+  .cert-seal .big{font-size:24px;letter-spacing:0;text-transform:none;font-family:"Georgia",serif;font-style:italic;font-weight:700;margin:4px 0}
+  .cert-foot{font-size:12px;color:var(--muted);margin-top:14px;font-style:italic}
+  @media print{
+    body{background:#fff !important}
+    .wrap{padding:0 !important;max-width:100% !important}
+    section.panel:not(#panel-certificate){display:none !important}
+    .row,.brand,.footer{display:none !important}
+    .cert-frame{border-color:#0b6c39;box-shadow:none}
+  }
 </style>
 </head>
 <body>
@@ -114,8 +201,8 @@
   <p>Welcome — and congrats on completing a Legora Enablement Training (LET) module. This is a short, fun checkpoint to confirm that what was taught actually landed, and that you're equipped to go off and deliver this training yourself.</p>
   <div class="card" style="margin-top:18px">
     <h2>How it works</h2>
-    <p>Pick the module you just finished. You'll be asked between 8 and 12 questions, mostly multiple choice, designed to take you 5–10 minutes. At the end you'll get a score, a fun rating, and two pre-filled emails — one to yourself, one to the enablement team — so the results are captured.</p>
-    <p style="font-size:13px;font-style:italic;color:var(--muted);margin-top:-6px">A quick heads-up on length: Modules 1, 3 and 4 sit around 8–10 questions. Module 2 (Legora Foundations) runs 12 — there's just a lot of ground to cover across the Assistant's four source types, Tabular Review and the Word Add-In, so it earns its extra couple of minutes.</p>
+    <p>Pick the module you just finished. You'll be asked between 8 and 15 questions — a mix of multiple choice, true/false, "pick all that apply", matching pairs, and putting things in order — designed to take you 5–15 minutes. The questions test your <em>understanding</em> of Legora, not your memory of specific numbers or definitions, so think rather than recall. At the end you'll get a score, a fun rating, and two pre-filled emails — one to yourself, one to the enablement team. Finish all four and a witty certificate of Legora deputisation is yours.</p>
+    <p style="font-size:13px;font-style:italic;color:var(--muted);margin-top:-6px">A heads-up on length: Module 1 is 10 questions, Module 4 is 8. Modules 2 (Legora Foundations) and 3 (Advanced Features) run longer — 12 and 15 — because they cover the most ground across the Assistant's source types, Tabular Review, the Word Add-In, Editor, Word Edits, Workflows and Playbooks. They earn the extra few minutes.</p>
     <div class="rules">
       <h3>Four rules</h3>
       <ul>
@@ -142,29 +229,45 @@
 
   <div class="modules">
     <button class="mod" data-module="1">
+      <span class="stamp">✓ Done</span>
       <div class="num">Module 1</div>
       <div class="title">AI Foundations</div>
       <div class="desc">Foundational principles of GenAI and LLMs — probabilistic vs deterministic, tokens, context windows, hallucination, and the engine-vs-car mental model.</div>
+      <div class="completion-line" data-completion="1">—</div>
       <div class="mod-meta"><span class="tag">⏱ 10 min limit</span><span class="tag">10 questions</span></div>
     </button>
     <button class="mod" data-module="2">
+      <span class="stamp">✓ Done</span>
       <div class="num">Module 2</div>
       <div class="title">Legora Foundations</div>
       <div class="desc">The core Legora features — Assistant (Sources + Create), Tabular Review, and the Word Add-In — how they work and when to use which.</div>
+      <div class="completion-line" data-completion="2">—</div>
       <div class="mod-meta"><span class="tag">⏱ 12 min limit</span><span class="tag">12 questions</span></div>
     </button>
     <button class="mod" data-module="3">
+      <span class="stamp">✓ Done</span>
       <div class="num">Module 3</div>
       <div class="title">Advanced Features</div>
       <div class="desc">End-to-end Workflows, Playbooks, Editor &amp; Word Edits, plus the KERNEL prompting framework and the six single-action step types.</div>
-      <div class="mod-meta"><span class="tag">⏱ 10 min limit</span><span class="tag">10 questions</span></div>
+      <div class="completion-line" data-completion="3">—</div>
+      <div class="mod-meta"><span class="tag">⏱ 15 min limit</span><span class="tag">15 questions</span></div>
     </button>
     <button class="mod" data-module="4">
+      <span class="stamp">✓ Done</span>
       <div class="num">Module 4</div>
       <div class="title">Use Case Discovery</div>
       <div class="desc">What makes a good (and bad) use case, the three levels of use-case maturity, design thinking and the impact/effort matrix for prioritisation.</div>
+      <div class="completion-line" data-completion="4">—</div>
       <div class="mod-meta"><span class="tag">⏱ 8 min limit</span><span class="tag">8 questions</span></div>
     </button>
+  </div>
+
+  <div class="all-done-banner" id="all-done-banner">
+    <div class="text">
+      <h3>🎉 All four modules done</h3>
+      <p>You've completed the full LET. Claim your certificate of Legora deputisation — it's witty, weirdly official, and yours to print.</p>
+    </div>
+    <button class="btn" id="see-certificate">🏆 See my certificate →</button>
   </div>
 
   <div class="row" style="margin-top:24px">
@@ -187,6 +290,7 @@
     <div class="qnum" id="q-number">Question 1</div>
     <div class="q" id="q-text">…</div>
     <div class="opts" id="q-opts"></div>
+    <div class="check-row" id="check-row"><button class="btn" id="check-btn" type="button" disabled>Check my answer →</button></div>
     <div class="feedback" id="q-feedback"></div>
     <div class="nav">
       <span class="score-pill">Score: <b id="score-now">0</b> / <span id="score-of">8</span></span>
@@ -226,8 +330,54 @@
       <button class="btn secondary" id="copy-results" type="button">📋 Copy results</button>
     </div>
     <p class="small" style="margin-top:12px">Two email drafts will open: one to you (<span id="show-trainee-email">—</span>), one to the enablement tracker (<span id="show-tracker-email">—</span>). Just hit send. If nothing pops up, use Copy results and paste into a new email.</p>
+    <div class="row" style="justify-content:center;margin-top:18px;padding-top:18px;border-top:1px solid var(--line)">
+      <button class="btn secondary" id="back-to-modules">← Back to modules</button>
+      <button class="btn" id="result-to-certificate" style="display:none">🏆 See my certificate →</button>
+    </div>
+    <p class="small" id="back-to-modules-hint" style="margin-top:8px">Got another module to do? Head back and pick the next one — your other scores will be saved here.</p>
   </div>
   <p class="footer">Thank you for taking the time — this helps us make LET better.</p>
+</section>
+
+<!-- ============ CERTIFICATE ============ -->
+<section id="panel-certificate" class="panel">
+  <div class="brand"><span class="dot"></span> Legora Enablement Training · Certificate</div>
+  <div class="cert-frame" id="cert-frame">
+    <div class="cert-eyebrow">— Officially, mostly officially, certified —</div>
+    <h1 class="cert-title">Sworn Legora Enabler</h1>
+    <p class="cert-sub">a vote of confidence in the holder of this document</p>
+
+    <div class="cert-seal">
+      <span>Legora</span>
+      <span class="big">Stamp of</span>
+      <span class="big" style="margin-top:-6px">Approval</span>
+      <span id="cert-date">—</span>
+    </div>
+
+    <p class="cert-eyebrow" style="color:var(--muted)">This is to certify that</p>
+    <div class="cert-name" id="cert-name">—</div>
+
+    <div class="cert-body">
+      <p>has voluntarily, deliberately, and with their professional reputation entirely at stake, completed all four modules of the Legora Enablement Training — and emerged with sufficient mastery of <em>probabilistic systems</em>, the <em>KERNEL framework</em>, the difference between a <em>Tabular Review row</em> and an <em>Excel row</em>, and the inarguable truth that one should <em>attach, never paste</em>, to be considered competent to deliver the training to others.</p>
+      <p>The holder is hereby <strong>authorised, encouraged, and gently insisted upon</strong>, to spread the gospel of Legora across their firm; and pledges, under no particular duress, to:</p>
+      <ul style="margin:0 0 10px 18px;padding:0;color:var(--ink);font-size:14px;line-height:1.6">
+        <li>attach documents instead of pasting them, however tempting;</li>
+        <li>treat the model as the engine, and Legora as the car;</li>
+        <li>run any Playbook three to four times before declaring it broken;</li>
+        <li>and, when asked whether AI is "deterministic", roll their eyes with grace.</li>
+      </ul>
+    </div>
+
+    <div class="cert-scores" id="cert-scores"></div>
+
+    <div id="cert-verdict" style="margin:12px 0 6px;font-weight:700;color:var(--accent)">—</div>
+    <div class="cert-foot">Issued by The Legora Enablement Team (probably) · Witnessed by one slightly proud HTML file · Suitable for printing, framing, or screenshotting smugly into Slack.</div>
+  </div>
+  <div class="row" style="justify-content:center;margin-top:18px">
+    <button class="btn" id="cert-print">🖨 Print certificate</button>
+    <button class="btn secondary" id="cert-back">← Back to modules</button>
+  </div>
+  <p class="footer">Welcome to the Legora enablement guild. Wear it well.</p>
 </section>
 
 </div>
@@ -245,15 +395,10 @@ const MODULES = {
     timeLimit: 10 * 60, // seconds — ~60s/question
     questions: [
       {
-        q: "If you only remember one thing from Module 1 about LLMs, what is it?",
-        options: [
-          "They're always right when they sound confident",
-          "They're probabilistic, not deterministic",
-          "They have perfect memory of their training data",
-          "They search the live web in real time"
-        ],
-        a: 1,
-        why: "Module 1's stated takeaway: when you use an LLM you are working with a probabilistic system, not a deterministic one — the same input can produce different outputs, and that is fundamental, not a bug."
+        type: "tf",
+        q: "Module 1's headline takeaway, true or false: \"When you give an LLM the exact same prompt twice, you should always expect the exact same output.\"",
+        a: false,
+        why: "False — LLMs are probabilistic, not deterministic. The same input can produce different outputs. That's not a bug; it's fundamental. This is the single most important thing to internalise from Module 1."
       },
       {
         q: "In the module's \"engine vs car\" analogy, what plays the role of the engine?",
@@ -267,18 +412,18 @@ const MODULES = {
         why: "The LLM is the engine; Legora is the car built around it. Hence Legora's model-agnostic architecture — it doesn't bet on a single provider."
       },
       {
-        q: "Roughly how much of an English word does one token correspond to?",
+        q: "A trainee asks: \"My 5,000-word draft is supposedly using ~6,500 tokens. Why are there more tokens than words?\" What's the right explanation?",
         options: [
-          "About 5 words",
-          "About 1 whole word",
-          "About three-quarters of a word",
-          "About a quarter of a word"
+          "LLMs add about 30% overhead for their own internal reasoning",
+          "Models don't see words — they see tokens, which are sub-word pieces. One token is roughly ¾ of an English word, so token counts come out higher than word counts",
+          "Punctuation and metadata each count as a full token",
+          "It's a Legora UI rounding bug"
         ],
-        a: 2,
-        why: "Rule of thumb from the module: 1 token ≈ ¾ of a word in English. The model only ever sees numbers — words are converted to tokens before anything else."
+        a: 1,
+        why: "Tokens are the actual unit the model reads — sub-word pieces, not words. Rule of thumb: 1 token ≈ ¾ of an English word, so word→token conversion is ~1.33×. Tokens, not words, are what fills the context window."
       },
       {
-        q: "Which architectural breakthrough — introduced in 2017 — made today's LLMs possible?",
+        q: "Which architectural breakthrough underpins every modern LLM — Claude, GPT, Gemini and the rest?",
         options: [
           "The Transformer",
           "The convolutional neural network",
@@ -286,7 +431,7 @@ const MODULES = {
           "Reinforcement learning from human feedback"
         ],
         a: 0,
-        why: "The Transformer (Google, 2017) is the architecture underpinning every modern LLM. LLMs are 'statistical language models' built on it."
+        why: "The Transformer is the architecture underpinning every modern LLM. The 2017 paper from Google was the unlock — every model trainees will interact with through Legora is a descendant of it."
       },
       {
         q: "A trainee asks: \"If I just paste the whole contract into the chat, that's the same as attaching it, right?\" What's the right answer?",
@@ -300,37 +445,32 @@ const MODULES = {
         why: "Module 1 explicitly says: \"Attach documents instead of pasting their content.\" Pair that with the guiding principle — give the model everything it needs, and nothing it does not. Think relevance, not disclosure."
       },
       {
-        q: "What is the \"lost in the middle\" problem?",
+        type: "tf",
+        q: "True or false: \"Information placed in the middle of a very long input gets used by the LLM just as reliably as information at the start or end.\"",
+        a: false,
+        why: "False — this is the \"lost in the middle\" problem. Performance degrades for info buried in the middle of a long input, well before the context-window ceiling. The takeaway: bigger context isn't always better. Curate."
+      },
+      {
+        q: "A trainee says: \"If hallucinations are factually wrong, lawyers will just spot them, right?\" What's the right pushback?",
         options: [
-          "Documents stored in the middle of a Project become inaccessible",
-          "LLMs degrade at using information that sits in the middle of a long input",
-          "Tokens in the middle of a sentence are silently skipped",
-          "The middle layers of a neural network are the slowest"
+          "Yes — hallucinations are usually obvious because the grammar breaks",
+          "The whole danger is that they DON'T look obviously wrong: hallucinations sound fluent and authoritative. \"Confident fluency plus factual error\" is what makes them slip past readers",
+          "Hallucinations only ever happen in citations",
+          "Hallucinations have been mostly eliminated by recent training"
         ],
         a: 1,
-        why: "Effective performance degrades well before the context-window ceiling — info buried in the middle of a long input is less reliably used. Bigger context isn't always better."
+        why: "The insidious bit is the fluency. The 2026 survey definition Module 1 quotes — \"fluent and syntactically correct but factually inaccurate or unsupported by external evidence\" — names exactly this. Grounding answers in citations is the practical defence."
       },
       {
-        q: "Module 1 quotes a 2026 survey definition of hallucination. It's content that is…",
+        q: "A trainee starts every Assistant prompt with: \"I am a lawyer at a UK law firm specialising in M&A.\" Module 1's advice on this would be…",
         options: [
-          "Always grammatically broken and easy to spot",
-          "Generated only when the model lacks training on the topic",
-          "Fluent and syntactically correct but factually inaccurate or unsupported by evidence",
-          "Identical to the source document but mis-cited"
+          "Good — add more personal context, the model will use it",
+          "Skip the persona — Legora already assumes a legal context. Use that prompt budget on Objective, Context and Output instead",
+          "Always include your call-to-bar date and qualifications for traceability",
+          "Move the persona to the end of the prompt"
         ],
-        a: 2,
-        why: "Verbatim from the module. The danger isn't garbled text — it's confident fluency plus factual error. That's why citations matter."
-      },
-      {
-        q: "Which of these is NOT one of the three parts of the recommended prompt structure?",
-        options: [
-          "Objective",
-          "Context",
-          "Output",
-          "Persona"
-        ],
-        a: 3,
-        why: "The three-part structure is Objective / Context / Output. Generic personas like \"I am a lawyer\" aren't needed — Legora already assumes legal context. Be specific about party roles instead."
+        a: 1,
+        why: "Legora already assumes legal context, so a generic \"I am a lawyer\" persona is wasted bytes. The three things actually worth telling the model are Objective (what you want), Context (the relevant material), and Output (the shape of the answer). When detail matters, be specific about party roles, not your generic identity."
       },
       {
         q: "Module 1 distinguishes the \"Assistant pattern\" from the \"Agent pattern\". What's the difference?",
@@ -344,15 +484,15 @@ const MODULES = {
         why: "The Assistant pattern is single-turn Q&A. The Agent pattern works for long horizons in the background — task → plan → iterate → complete. Sub-agents then enable massively parallel work across Research, Drafting and Review."
       },
       {
-        q: "Module 1's capability timeline shows the \"horizon of work\" a single AI call can usefully act over. The trajectory is roughly…",
-        options: [
-          "2021 rules-based → 2023 prompts (seconds) → 2025 workflows (minutes) → 2026 end-to-end projects (hours)",
-          "Stable since 2020 — same capability, just faster",
-          "2023 hours → 2025 days → 2026 weeks",
-          "It's only ever been minutes — the rest is hype"
+        type: "order",
+        q: "Module 1's capability timeline. Put these four capability eras in order — earliest to latest — based on what a single AI call can usefully do.",
+        items: [
+          "Rules-based automation",
+          "Simple prompts — seconds of work",
+          "Advanced workflows — minutes of work",
+          "End-to-end projects — hours of work"
         ],
-        a: 0,
-        why: "Module 1's closing chart: the time horizon for useful AI work has stretched from seconds (2023) to minutes (2025) to hours (2026). \"Parallelism changes the economics of legal work.\""
+        why: "Rules → seconds → minutes → hours. The useful-work horizon has stretched dramatically: 2023 prompts ran in seconds, 2025 workflows in minutes, 2026 end-to-end projects in hours. \"Parallelism changes the economics of legal work.\""
       }
     ]
   },
@@ -372,26 +512,26 @@ const MODULES = {
         why: "Private Space is the personal sandbox — only accessible by you, designed for experimentation. You can't share documents from it, which is the point."
       },
       {
-        q: "When you run a Database Search, how many documents does Legora rank, and how many does it pull through for the answer?",
+        q: "How does Database Search differ from Ctrl+F (or basic keyword search) inside a folder of documents?",
         options: [
-          "Ranks 50, selects 25",
-          "Ranks 100, selects the top 30",
-          "Ranks 250, selects the top 100",
-          "Ranks 30, uses all of them"
+          "It's the same thing, just with a fancier UI",
+          "It searches semantically — ranks documents by meaning, picks the most relevant top-set, then uses those to construct the answer. Not exact-string matching",
+          "It only works on PDFs",
+          "It searches faster but otherwise the same"
         ],
         a: 1,
-        why: "Database Search ranks the 100 most relevant documents semantically, then uses the top 30 to generate results. It's not Ctrl+F — it's semantic ranking."
+        why: "Database Search is semantic, not literal. Under the hood it ranks ~100 documents by relevance and pulls the top 30 into the answer — but the conceptual point that matters for trainers is that it finds documents by meaning, not by exact words. Hence why it's worth using even when you don't know the exact terminology."
       },
       {
-        q: "How would you describe Tabular Review to a lawyer who's brand new to it?",
-        options: [
-          "A chronology timeline of events",
-          "A chat thread with each document as a different message",
-          "A grid — each row is a document, each column is a question. \"Excel for lawyers.\"",
-          "A folder of Word docs with citations attached"
+        type: "match",
+        q: "Match each Assistant Source toggle to the kind of work it's designed for.",
+        pairs: [
+          { l: "Database Search", r: "Semantic search across firm precedents (inside a Project)" },
+          { l: "Web Search", r: "Recent regulation, market trends, news from the public web" },
+          { l: "Legal Research", r: "Curated jurisprudence collections, up to 2 jurisdictions" },
+          { l: "Deep Research", r: "Multi-step cross-jurisdictional investigation, 5–10+ min" }
         ],
-        a: 2,
-        why: "Rows = documents, columns = questions. The product's working analogy is \"Excel for lawyers,\" with a 10,000-cell limit."
+        why: "Module 2's 'when to reach for which Source toggle' rule. DB = inside the firm, Web = public/recent, Legal Research = curated case law collections, Deep Research = the heavyweight option (with the 'never interrogate it mid-output' caveat)."
       },
       {
         q: "Given the 10,000-cell limit, how many documents can you review against ONE column at a time?",
@@ -405,48 +545,45 @@ const MODULES = {
         why: "Cell math: 10,000 cells ÷ 1 column = 10,000 docs. 10 columns = 1,000 docs. 100 columns = 100 docs. Worth remembering when scoping a TR."
       },
       {
-        q: "A lawyer says: \"Let me Web Search for recent guidance on the Acme Corp IPO we're advising on.\" What's wrong with that?",
+        q: "A trainee wants to pull structured company information for a client matter — registered office, directors, recent filings — from Companies House. Should they reach for Web Search?",
         options: [
-          "Web Search shouldn't be used for regulatory guidance",
-          "The client name (\"Acme Corp\") should never be in a Web Search query",
-          "IPO research needs Deep Research instead",
-          "Nothing — Legora strips the client name automatically"
+          "Yes — Web Search will scrape and structure it cleanly",
+          "No — Web Search isn't built for structured-data extraction. Go to the source (Companies House), download the records, then attach them to Assistant",
+          "Yes, but only for FTSE 350 companies",
+          "Yes, but Companies House blocks Web Search anyway"
         ],
         a: 1,
-        why: "Web Search routes through Legora's backend and never sends the raw prompt — but the trainee shouldn't TYPE confidential client information into the query in the first place. That's the canonical bad example in the module."
+        why: "Web Search is great for finding things on the public web — recent regulation, market trends, news, thought leadership. It's not a structured-data tool. For Companies House (or company sites, or anywhere with structured records you need to work with), go to the source, download, and attach to Assistant. The model then reads the document directly with citations pointing back to it."
       },
       {
-        q: "Deep Research can take 5–10 minutes (sometimes up to 40). If a trainee interrupts mid-output with \"Are you sure about that?\", what happens?",
+        type: "multi",
+        q: "Deep Research is powerful but constrained. Pick all the statements below that are TRUE about how to use it well.",
         options: [
-          "It re-runs from the start, fresh",
-          "It can actually INCREASE hallucinations — the model loses context from previous turns",
-          "It improves accuracy via a built-in self-check",
-          "It cancels and restarts faster"
+          "It can take 5–10 minutes — sometimes up to 40",
+          "You can attach documents to focus the research",
+          "Text only — no document attachments allowed",
+          "Don't interrogate it mid-output ('Are you sure?') — that increases hallucinations",
+          "You should poll it every 30 seconds to keep it focused"
+        ],
+        a: [0, 2, 3],
+        why: "Three constraints to internalise: 5–10 min runtime (up to 40), text-only (no doc attachments), and DON'T interrogate it mid-flight (loses prior-turn context → more hallucinations). You can attach docs to regular Assistant, just not to Deep Research."
+      },
+      {
+        q: "A trainee is in Word with the Add-In open. They want to ask \"What's the term length of this NDA?\" — just get an answer, no edits to the document. Which mode should they use?",
+        options: [
+          "Edit",
+          "Ask",
+          "Auto",
+          "Translate"
         ],
         a: 1,
-        why: "Module 2 is explicit: don't challenge or interrogate Deep Research outputs — it's been found to increase hallucinations as the model loses context."
+        why: "Ask = Q&A about the doc, no changes. Edit = propose tracked changes (blue = additions, red strikethrough = deletions). Auto = let Legora infer which of those is needed. Knowing which mode to pick saves trainees from accidentally getting tracked changes when they wanted information."
       },
       {
-        q: "The Word Add-In has three modes. Which lineup is right?",
-        options: [
-          "Edit = propose tracked changes • Ask = Q&A about the doc • Auto = Legora infers what's needed",
-          "Edit = changes only • Ask = generate a new doc • Auto = anonymise",
-          "Edit = translate • Ask = redline • Auto = summarise",
-          "Edit = run playbook • Ask = web search • Auto = workflow"
-        ],
-        a: 0,
-        why: "Edit / Ask / Auto. Plus a quick visual cue when in Edit mode: blue = additions, red strikethrough = deletions."
-      },
-      {
-        q: "When the Word Add-In applies tracked changes, whose name shows up as the author of those changes?",
-        options: [
-          "\"Legora AI\"",
-          "Your firm's name",
-          "The user, personally — it never reveals Legora was used",
-          "\"Anonymous\""
-        ],
-        a: 2,
-        why: "Tracked changes always show as coming from you personally. There's no option to attribute them to Legora or the firm — useful to know when a client will see the redline."
+        type: "tf",
+        q: "True or false: \"When the Word Add-In applies tracked changes, the author label shown is 'Legora AI'.\"",
+        a: false,
+        why: "False — tracked changes always show as coming from YOU personally. There's no option to attribute them to Legora or to the firm. Worth knowing when a client will see the redline."
       },
       {
         q: "A trainee uploads documents from iManage. Later, someone amends those documents in iManage. What happens in Legora?",
@@ -471,15 +608,15 @@ const MODULES = {
         why: "Web Search is tuned for legal use — it prioritises authoritative primary sources (gov, regulatory, law-firm thought leadership) over unverified ones like Wikipedia or Reddit. Routed through Exa.ai so the raw prompt never leaves Legora's backend."
       },
       {
-        q: "You set up a 200-column Tabular Review across 50 documents. What does Legora do automatically before running the rest?",
+        q: "Why does Tabular Review automatically run a small sample of rows first, before you click Run All on the full grid?",
         options: [
-          "Runs the first column to completion across all 50 documents",
-          "Runs the top ten rows automatically so you can verify quality before committing the rest",
-          "Runs the last row as a control",
-          "Nothing — you have to manually click \"Run All\""
+          "Because of an external API rate limit",
+          "So you can validate the output quality and refine the prompt BEFORE the rest of the grid burns through the 10,000-cell budget on a misfiring prompt",
+          "For billing purposes",
+          "It doesn't — TR runs everything immediately when you start"
         ],
         a: 1,
-        why: "Top 10 rows auto-run as a quality check — review the output, refine the prompt if needed, then run the full set. Saves the cell budget from a misfiring prompt."
+        why: "The auto-run sample (top 10 rows) is a quality gate, not a quirk. It lets you inspect early results, refine the prompt or column definition, and only then commit to the full grid — protecting both the cell budget and the time you'd otherwise spend re-running a TR with a bad prompt."
       },
       {
         q: "Why does Legora make you provide citations in Assistant answers (the little grey circles)?",
@@ -496,40 +633,111 @@ const MODULES = {
   },
   3: {
     name: "Module 3: Advanced Features",
-    timeLimit: 10 * 60,
+    timeLimit: 15 * 60,
     questions: [
       {
-        q: "KERNEL is the prompting framework Module 3 teaches. What does it stand for?",
-        options: [
-          "Keep, Edit, Refine, Negotiate, Enrich, Loop",
-          "Keep it simple • Easy to verify • Reproducible results • Narrow scope • Explicit constraints • Logical structure",
-          "Knowledge, Evaluate, Refine, Notice, Embed, Learn",
-          "Keyword, Extract, Review, Narrate, Edit, Lock"
+        type: "match",
+        q: "Module 3 teaches four advanced prompting techniques that materially lift output quality. Match each one to what it does.",
+        pairs: [
+          { l: "Pseudo-code", r: "Use IF/ELSE and FOR-loops to add structure to your prompt" },
+          { l: "Recursive self-check", r: "Tell the model to draft → critique → improve (e.g. \"ITERATE 3 TIMES\")" },
+          { l: "Calibrated confidence", r: "Force answers to be tagged: \"In the document\" / \"Reasonable inference\" / \"Unknown\"" },
+          { l: "Multi-perspective simulation", r: "Have the model analyse through different lenses — e.g. governance / legal risk / commercial" }
         ],
-        a: 1,
-        why: "KERNEL: Keep it simple, Easy to verify, Reproducible results, Narrow scope, Explicit constraints, Logical structure. It's the spine of every advanced prompting tip in this module."
+        why: "Four moves worth knowing by name. Each one handles a different failure mode: hallucinated certainty (calibrated confidence), tunnel vision (multi-perspective), rushed first drafts (recursive self-check), and unstructured intent (pseudo-code). Knowing which one to deploy is what separates a trainer from a casual user."
       },
       {
-        q: "Module 3 says you should break complex work into single-action steps. Which set of six verbs does the module use?",
+        type: "multi",
+        q: "A trainee shows you these five prompts they're about to run. Pick all the ones that need rewriting before they hit \"Send\".",
         options: [
-          "Compare / Annotate / Redact / Sign / Send / File",
-          "Summarise / Review / Research / Extract / Draft / Edit",
-          "Translate / Anonymise / Fill / Read / Quote / Cite",
-          "Build / Test / Iterate / Ship / Track / Refine"
+          "Review this contract, summarise it, redline it, and draft a client email about it.",
+          "Identify high-risk termination provisions in the attached MSA and propose safer fallback wording.",
+          "Apply current best practice to structure the analysis.",
+          "Draft a 600-word UK-English memo on the IP terms in the attached contract, in three sections.",
+          "Find the bits that are bad in this document."
         ],
-        a: 1,
-        why: "Six single-action verbs. They map cleanly onto Legora features: Extract → TR/Database, Draft → Editor, Edit → Word Edits, Research → Legal/Web/Deep Research, etc."
+        a: [0, 2, 4],
+        why: "Three violators. \"Review/summarise/redline/draft email\" breaks <b>Keep it simple</b> — four goals in one prompt. \"Apply current best practice\" breaks <b>Reproducible results</b> — vague, the model will guess differently each run. \"Find the bits that are bad\" breaks <b>Easy to verify</b> — no concrete criteria for what \"bad\" means. The other two are well-formed: one clear goal with verifiable scope, or explicit output constraints (length, language, structure)."
       },
       {
-        q: "When should you reach for Editor vs Word Edits?",
+        q: "Module 3 showed that adding pseudo-code structure (IF/ELSE, FOR-loops) to a prompt often improves output quality. Why does that actually work?",
         options: [
-          "Editor for editing an existing doc; Word Edits for creating new ones",
-          "Editor for new documents in a live editable environment; Word Edits to edit an existing Word document",
-          "They're the same product with different branding",
-          "Editor is read-only; Word Edits is the collaborative version"
+          "LLMs secretly run as code interpreters",
+          "Pseudo-code reduces verbosity AND adds explicit logical structure the model can follow step-by-step",
+          "It triggers a special \"developer mode\" in the model",
+          "Pseudo-code prompts get prioritised on Legora's servers"
         ],
         a: 1,
-        why: "Editor generates NEW docs in a live editable environment (and preserves firm formatting). Word Edits is for editing an EXISTING Word document. Different jobs."
+        why: "Pseudo-code adds explicit structure — clear branches, clear iteration, clear order of operations — without padding the prompt with verbose natural language. The model treats it as scaffolding, which is why it tends to outperform both terse and verbose plain-English prompts. The technique nails three KERNEL principles at once: Narrow scope, Explicit constraints, Logical structure."
+      },
+      {
+        type: "match",
+        q: "Match each advanced feature to what it's best for.",
+        pairs: [
+          { l: "Editor", r: "Generate a new document in a live editable environment" },
+          { l: "Word Edits", r: "Edit an existing Word document directly within Legora" },
+          { l: "Workflows", r: "Repeatable multi-step processes packaging multiple Legora tools" },
+          { l: "Playbooks", r: "Rules-based contract review and mark-up against firm positions" }
+        ],
+        why: "Editor = NEW docs in Legora. Word Edits = EXISTING Word docs. Workflows = repeatable multi-step (TR + Editor + steps strung together). Playbooks = rules-based contract review, built in web, run in the Word Add-In."
+      },
+      {
+        q: "A trainee needs to draft a 5-page memo to a client based on a term sheet, with the firm's formatting and styles preserved end-to-end. What's the best fit?",
+        options: [
+          "Tabular Review with one column",
+          "Editor — generate the draft live, in Legora, with firm formatting preserved",
+          "Word Edits on a blank document",
+          "A Playbook"
+        ],
+        a: 1,
+        why: "Editor is purpose-built for this: generating NEW documents in a live editable environment that preserves firm formatting and removes the \"copy/paste + re-format\" step at the end. Word Edits is for editing EXISTING Word docs. TR is for extracting across docs. Playbooks are for clause review."
+      },
+      {
+        q: "A trainee has a draft NDA in Word and needs to apply about 15 tightening edits across the whole document in a single pass. Which feature is the right fit?",
+        options: [
+          "Editor — drag the doc in and rewrite from scratch",
+          "Word Edits — edit the existing Word document directly within Legora, reliable single-pass changes",
+          "Tabular Review",
+          "Build a Workflow specifically for this one document"
+        ],
+        a: 1,
+        why: "Word Edits is the right call: \"you want reliable edits that should be achievable in a single pass; you want to edit more than one document; you want fewer MS Word constraints.\" Editor is for NEW docs. TR doesn't apply. A Workflow would be overkill for a one-off."
+      },
+      {
+        q: "A trainee asks: \"Why would I bother building a Workflow when I could just write one really good prompt?\" What's the best one-line answer?",
+        options: [
+          "Workflows cost less per query",
+          "A Workflow packages a multi-step process — chained tools, structured inputs and outputs — into a reusable template that other people can run repeatedly; a single prompt is one-shot",
+          "Workflows are mandatory for any task that takes more than five minutes",
+          "There's no real difference, just branding"
+        ],
+        a: 1,
+        why: "A Workflow's value isn't faster prompting — it's repeatability and reusability. Goal, context docs, user inputs, structured steps with tool actions, defined outputs — all packaged as a template that other people can run with different inputs. The components a Workflow contains (Goal · Context · Inputs · Steps · Outputs) follow from that purpose."
+      },
+      {
+        type: "multi",
+        q: "Pick all the work patterns where building a Workflow is the right call.",
+        options: [
+          "Repeatable, structured work with consistent steps",
+          "A one-off bespoke matter unique to this client",
+          "High-volume tasks done weekly or more",
+          "Tasks needing human judgement at every step",
+          "Standardised processes where outputs follow a known shape",
+          "Heavy branching and \"it depends\" decisioning at every fork"
+        ],
+        a: [0, 2, 4],
+        why: "Workflows fit repeatable, structured, high-volume, standardised work. They DON'T fit one-off bespoke matters, tasks needing human judgement at every step, or heavy branching — those are better as ad-hoc Assistant work, with any reusable patterns captured later."
+      },
+      {
+        q: "A trainee describes their next matter: \"A unique cross-border restructuring with three novel regulatory questions, each needing a partner's judgement call before we move on.\" Should they build a Workflow for it?",
+        options: [
+          "Yes — Workflows fit every matter",
+          "Yes, but only the first half",
+          "No — one-off, judgement-heavy and bespoke. A Workflow is the wrong fit; tackle it in Assistant, step by step",
+          "Yes — build it now, refine later"
+        ],
+        a: 2,
+        why: "Workflows are the wrong fit for one-off bespoke work, tasks needing human judgement at every step, and heavy branching. This matter ticks all three. Better to use Assistant ad-hoc, and capture any patterns that do turn out to repeat into a future template."
       },
       {
         q: "Each rule in a Playbook is structured as…",
@@ -543,37 +751,10 @@ const MODULES = {
         why: "Starting position, then up to 3 fallbacks in descending preference, then 'not acceptable'. This is the structure every Playbook rule follows."
       },
       {
-        q: "How many times does Module 3 recommend you run a Playbook before deciding which version to work from?",
-        options: [
-          "Once is enough — pick the answer and move on",
-          "Until it hits a 100% match",
-          "3–4 times, then pick the version that best resembles the ideal",
-          "Continuously, in production"
-        ],
-        a: 2,
-        why: "Run 3–4 times, pick the best. Given the non-deterministic nature of LLMs, outputs will vary — same idea as the Midjourney pattern. Realistic expectation-setting matters."
-      },
-      {
-        q: "Which set of logical connectors does the module recommend inside Playbook rules?",
-        options: [
-          "WHILE / DO / UNTIL / BREAK",
-          "IF / ELSE / ONLY IF / OR / EITHER / THEN",
-          "AND / OR / NOT / XOR",
-          "UNLESS / EXCEPT / SAVE FOR / NOTWITHSTANDING"
-        ],
-        a: 1,
-        why: "IF / ELSE / ONLY IF / OR / EITHER / THEN — read well by LLMs and interpreted with higher accuracy. Avoid hedging words like 'preferably' and 'generally'."
-      },
-      {
-        q: "Where are Playbooks built, and where are they actually run?",
-        options: [
-          "Built in Word, run in Word",
-          "Built in the web app, run in the Word Add-in",
-          "Built in the Word Add-in, run on the web",
-          "Built and run only inside Tabular Review"
-        ],
-        a: 1,
-        why: "Built/edited in the web app (often using Workflow 12, the Playbook Rule Generator); run in the Word Add-in. Expect 6–18 hours of refinement before they're production-ready."
+        type: "tf",
+        q: "True or false: \"Playbooks are both built and run inside the Word Add-In.\"",
+        a: false,
+        why: "False — Playbooks are BUILT in the web app (often using Workflow 12, the Playbook Rule Generator) and RUN in the Word Add-In. Plan for 6–18 hours of refinement before they're production-ready, and expect to run each one 3–4 times to pick the best version (LLMs being non-deterministic)."
       },
       {
         q: "If you only remember ONE rule when designing AI outputs for lawyers to review, the module says it should be…",
@@ -587,26 +768,40 @@ const MODULES = {
         why: "\"If you only remember one thing: make the output easy to review.\" Lawyer keeps responsibility, AI accelerates — the design has to support that handoff."
       },
       {
-        q: "Which of these best describes the anatomy of a Workflow?",
+        q: "A trainee is building their first Legora Workflow. Module 3's pro tip on how to actually build it is…",
         options: [
-          "Just a Tabular Review with a fancier name",
-          "A single mega-prompt run across many documents",
-          "Goal/outcome • Context documents • User inputs/variables • Steps with prompts and tool actions • Outputs",
-          "An automated Playbook running in the background"
-        ],
-        a: 2,
-        why: "A Workflow packages goal, context docs, user inputs, structured steps (prompts + tool actions) and outputs into a guided end-to-end process. Best for repeatable, structured, high-volume work — not one-off bespoke matters."
-      },
-      {
-        q: "Module 3's pseudo-code case study compared three prompts on a restated lease. Roughly what did the results show?",
-        options: [
-          "All three got 100% — pseudo-code makes no difference",
-          "Long verbose prompt 71% · Short prompt 62% · Short prompt + pseudo-code 100%",
-          "Pseudo-code performed worst because LLMs aren't compilers",
-          "Only the long prompt worked — pseudo-code confused the model"
+          "Chain all the steps together first, then test the whole flow end-to-end",
+          "Start with a single action — review the output — only then append the next step",
+          "Build the whole Workflow without testing, debug at the end",
+          "Skip testing entirely if your prompts follow KERNEL"
         ],
         a: 1,
-        why: "A short prompt with pseudo-code (IF/ELSE + FOR loops) hit 100%, vs 62% for a short natural-language prompt and 71% for the long verbose one. Pseudo-code adds structure without verbosity."
+        why: "Module 3's pro tip verbatim: \"Start with a single action and review the output. If it's on track, append the next step.\" Same logic as good software engineering — build incrementally, validate each step, then chain. Far easier to debug a 1-step regression than a 5-step one."
+      },
+      {
+        type: "multi",
+        q: "Module 3 is opinionated about how to write Playbook rules well. Pick all the patterns that are pitfalls to avoid.",
+        options: [
+          "Using hedging words like \"preferably\", \"generally\", or \"reasonable efforts\"",
+          "Using explicit logical connectors like IF / ELSE / ONLY IF",
+          "Writing a fallback that's just the Starting position restated as \"gold standard\"",
+          "Putting concrete wording in the Starting position",
+          "Including Example Language for complex clauses where it could prompt full deletion-and-replacement",
+          "Writing Rule 5 that references context you established in Rule 2"
+        ],
+        a: [0, 2, 4, 5],
+        why: "Four real pitfalls. Hedging words leave the model guessing — be specific. Fallbacks that just restate the gold standard waste a slot. Example Language on complex clauses can prompt overly aggressive amendments (full deletion-and-replacement). And — critically — <b>each Playbook rule is independent; context provided in one rule is NOT retained in another</b>. The two good patterns are explicit logical connectors (IF/ELSE/ONLY IF) and concrete wording in the Starting position."
+      },
+      {
+        q: "A trainee writes Playbook Rule 5 like this: \"As established in Rule 2, our preferred 'Affiliate' definition is X — apply the same logic here.\" What's wrong with that approach?",
+        options: [
+          "Nothing — Playbook rules build on each other in order",
+          "Each Playbook rule is independent; context from one rule is NOT retained or available in another",
+          "Cross-references work, but only for the first three rules",
+          "It works, but it eats extra cell budget"
+        ],
+        a: 1,
+        why: "Critical Playbook gotcha worth catching early: \"Each rule is separate from another. Context provided in one rule is not retained in another.\" If two rules need the same context, you have to repeat it in both rules — not reference across them."
       }
     ]
   },
@@ -626,37 +821,40 @@ const MODULES = {
         why: "Math-heavy work is a RED FLAG, not a green one. Damages models, fee waterfalls, statistical work — those belong in Excel or specialised tools, not Legora."
       },
       {
-        q: "Which of these IS a red flag that a use case isn't right for Legora?",
+        type: "multi",
+        q: "Module 4 calls out a bunch of red flags that mean a use case isn't right for Legora. Pick all the red flags below.",
         options: [
-          "The same type of analysis repeated across different documents",
-          "Something done at least monthly",
-          "It requires perfection without any human review",
-          "Reviewing 50+ NDAs per month"
+          "Requires perfection without human review",
+          "Same type of analysis repeated across documents",
+          "Mathematically complex or calculation-heavy",
+          "Done at least weekly",
+          "A process problem dressed up as a task problem",
+          "Has a defined start and end point",
+          "Restricted data the model isn't allowed to see"
         ],
-        a: 2,
-        why: "Zero-tolerance, no-human-review use cases are off-limits. Legal professional responsibility cannot be delegated to AI — the lawyer must stay in the loop."
+        a: [0, 2, 4, 6],
+        why: "Red flags: no-human-review, math-heavy, process-problem-not-task, restricted data. Repeated analysis, weekly cadence and defined scope are GREEN lights — they're criteria for a GOOD use case."
       },
       {
-        q: "The module describes three levels of use-case maturity. Which set is correct?",
-        options: [
-          "Beginner / Intermediate / Advanced",
-          "Level 1 single-task • Level 2 multi-step workflows • Level 3 process transformation",
-          "Pilot / Rollout / Scale",
-          "Quick / Medium / Slow"
+        type: "order",
+        q: "Order Module 4's three use-case maturity levels from simplest to most complex.",
+        items: [
+          "Single-task use case (one AI action on one or a batch of docs — e.g. summarise a memo)",
+          "Multi-step workflow (chained AI actions — e.g. extract → analyse → report)",
+          "Process transformation (rethink the whole workflow with AI embedded throughout)"
         ],
-        a: 1,
-        why: "L1 = one action on one or a batch of docs (e.g. summarise a memo). L2 = chained AI actions feeding each other (e.g. extract → analyse → report). L3 = end-to-end process redesign with AI embedded throughout."
+        why: "L1 → L2 → L3 in complexity. Start participants at L1; only move to L2 once they grasp the basics; reserve L3 for strategic discussions with experienced teams."
       },
       {
-        q: "Design thinking encourages thinking through challenges from which three perspectives?",
+        q: "A team identifies their main bottleneck as: \"no one knows who owns the contract-review handoff between legal and procurement.\" Module 4's framing would say…",
         options: [
-          "Lawyer / Client / Regulator",
-          "People / Process / Technology",
-          "Cost / Quality / Time",
-          "Risk / Reward / Effort"
+          "Build a Legora Workflow for it",
+          "This is a Process problem masquerading as a Task problem — technology won't fix it. Fix the process first, then look at where AI fits",
+          "Add more people to the handoff",
+          "Park it — Legora can't help here"
         ],
         a: 1,
-        why: "People / Process / Technology — the golden rule. Often the real problem is a process problem, not a task problem, and tech can't fix that alone."
+        why: "Module 4's golden rule: think People / Process / Technology. \"Technology won't fix broken processes — it may just automate dysfunction.\" If the underlying problem is unclear ownership or handoffs, fix that first; only then think about where AI accelerates the now-clean process."
       },
       {
         q: "A team raises: \"Finding relevant clauses across our portfolio takes hours.\" In the Advanced Track style, how would you reframe that?",
@@ -670,37 +868,32 @@ const MODULES = {
         why: "Turn pain points into \"How Might We\" opportunity statements. They open up problem-space thinking instead of jumping to a single solution."
       },
       {
-        q: "On the impact/effort matrix, a use case that's HIGH impact and LOW effort lives in which quadrant?",
-        options: [
-          "Time Wasters",
-          "Quick Wins",
-          "Fill-Ins",
-          "Large Projects"
+        type: "match",
+        q: "Match each quadrant of the impact/effort matrix to its description.",
+        pairs: [
+          { l: "Quick Wins", r: "High impact, low effort — prioritise these first" },
+          { l: "Large Projects", r: "High impact, high effort — strategic, needs planning" },
+          { l: "Fill-Ins", r: "Low impact, low effort — do them when there's slack" },
+          { l: "Time Wasters", r: "Low impact, high effort — actively avoid" }
         ],
-        a: 1,
-        why: "Quick Wins = high impact, low effort. Prioritise these first. Large Projects = high impact, high effort. Fill-Ins = low/low. Time Wasters = low impact, high effort — actively avoid."
+        why: "Module 4's prioritisation grid. Quick Wins go first, Large Projects get planned investment, Fill-Ins fill slack capacity, Time Wasters get politely declined."
       },
       {
-        q: "Which 5-stage process does Module 4's discovery workshop adapt for legal teams?",
-        options: [
-          "Plan / Build / Test / Ship / Iterate",
-          "Empathise / Define / Ideate / Build / Test",
-          "Discover / Decide / Design / Deliver / Debrief",
-          "Listen / Brainstorm / Prototype / Pilot / Scale"
-        ],
-        a: 1,
-        why: "Classic design-thinking five-stage process: Empathise, Define, Ideate, Build, Test. The Simplified Track collapses Define & Ideate; the Advanced Track keeps them apart."
+        type: "order",
+        q: "Order the five stages of design thinking, as Module 4's workshop adapts them for legal teams.",
+        items: ["Empathise", "Define", "Ideate", "Build", "Test"],
+        why: "Empathise → Define → Ideate → Build → Test. The Simplified Track collapses Define & Ideate into one step; the Advanced Track keeps them apart to allow for proper process thinking."
       },
       {
-        q: "After running a Use Case Discovery workshop, how quickly does the module recommend sharing the outputs?",
+        q: "Why does Module 4 push so hard on sharing workshop outputs within ~48 hours of a Use Case Discovery session?",
         options: [
-          "Within 48 hours, while energy is high",
-          "Within a week",
-          "Within two weeks (aligned with pilot kickoff)",
-          "By the end of the quarter"
+          "It's a Legora licensing requirement",
+          "Workshop energy decays fast — capturing momentum while enthusiasm is high is what turns ideas into actual pilots. Sit on the outputs and the moment passes",
+          "Because of internal billing cycles",
+          "For audit-trail compliance"
         ],
-        a: 0,
-        why: "Share within 48 hours whilst energy is high — momentum is everything in change initiatives. Pilot kickoff for the top-priority use case follows within two weeks."
+        a: 1,
+        why: "Change management is momentum-driven. The 48-hour window isn't an arbitrary deadline — it's the realistic shelf-life of post-workshop enthusiasm. Document, share, assign owners, and schedule the first pilot kickoff (within ~2 weeks) before participants drift back into business-as-usual."
       }
     ]
   }
@@ -720,10 +913,11 @@ const state = {
   timerId: null,
   secondsLeft: 0,
   timedOut: false,
+  completed: {},   // { moduleId: { score, total, pct, badge, dateISO } }
 };
 
 const $ = (id) => document.getElementById(id);
-const panels = ["welcome","modules","quiz","results"];
+const panels = ["welcome","modules","quiz","results","certificate"];
 function show(name){
   panels.forEach(p => $("panel-"+p).classList.toggle("active", p===name));
   window.scrollTo({top:0,behavior:"smooth"});
@@ -745,6 +939,39 @@ document.querySelectorAll(".mod").forEach(btn => {
     startQuiz(m);
   });
 });
+
+function refreshModulePicker(){
+  for(let m = 1; m <= 4; m++){
+    const btn = document.querySelector(`.mod[data-module="${m}"]`);
+    const c = state.completed[m];
+    if(c){
+      btn.classList.add("completed");
+      btn.querySelector(`.completion-line[data-completion="${m}"]`).textContent =
+        `✓ Done · ${c.score} / ${c.total} (${c.pct}%) · ${c.badge.split(' — ')[0]}`;
+    } else {
+      btn.classList.remove("completed");
+      btn.querySelector(`.completion-line[data-completion="${m}"]`).textContent = "—";
+    }
+  }
+  const allDone = [1,2,3,4].every(m => state.completed[m]);
+  $("all-done-banner").classList.toggle("show", allDone);
+  $("result-to-certificate").style.display = allDone ? "" : "none";
+  // Tweak the back-to-modules hint
+  const remaining = [1,2,3,4].filter(m => !state.completed[m]).length;
+  $("back-to-modules-hint").textContent = allDone
+    ? "You've done all four — head back to claim your certificate."
+    : (remaining < 4
+        ? `${remaining} module${remaining===1?'':'s'} to go. Head back and pick the next one — your other scores stay saved here.`
+        : "Got another module to do? Head back and pick the next one — your other scores will be saved here.");
+}
+
+// Patch original show() so module picker refreshes whenever we visit it
+const _origShow = show;
+show = function(name){
+  _origShow(name);
+  if(name === "modules") refreshModulePicker();
+  if(name === "certificate") renderCertificate();
+};
 
 function startQuiz(m){
   state.module = m;
@@ -811,6 +1038,26 @@ $("timeup-restart").addEventListener("click", () => {
   show("welcome");
 });
 
+// Shuffle helper (Fisher-Yates) — deterministic per-question so results match the feedback
+function seededShuffle(arr, seed){
+  const a = arr.slice();
+  let s = seed;
+  for(let i = a.length - 1; i > 0; i--){
+    s = (s * 9301 + 49297) % 233280;
+    const j = Math.floor((s / 233280) * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function arrEq(a, b){
+  if(a.length !== b.length) return false;
+  for(let i = 0; i < a.length; i++) if(a[i] !== b[i]) return false;
+  return true;
+}
+
+// Per-question working state
+let _qState = null;
+
 function renderQ(){
   const mod = MODULES[state.module];
   const q = mod.questions[state.qIndex];
@@ -819,46 +1066,228 @@ function renderQ(){
   $("score-now").textContent = state.score;
   $("prog-count").textContent = (state.qIndex+1) + " / " + mod.questions.length;
   $("prog-bar").style.width = (((state.qIndex)/mod.questions.length)*100) + "%";
-  const opts = $("q-opts"); opts.innerHTML = ""; opts.classList.remove("locked");
+  const opts = $("q-opts"); opts.innerHTML = ""; opts.classList.remove("locked","multi");
   const fb = $("q-feedback"); fb.classList.remove("show","good","bad"); fb.innerHTML = "";
   const next = $("next-btn"); next.disabled = true;
   next.textContent = (state.qIndex === mod.questions.length - 1) ? "See my results →" : "Next →";
+  const checkRow = $("check-row"); checkRow.classList.remove("show");
+  const checkBtn = $("check-btn"); checkBtn.disabled = true;
+  _qState = null;
 
-  const letters = ["A","B","C","D"];
+  const type = q.type || 'mcq';
+  if(type === 'mcq') renderMCQ(q);
+  else if(type === 'tf') renderTF(q);
+  else if(type === 'multi') renderMulti(q);
+  else if(type === 'match') renderMatch(q);
+  else if(type === 'order') renderOrder(q);
+}
+
+function showFeedback(ok, q){
+  const fb = $("q-feedback");
+  fb.classList.add("show", ok ? "good" : "bad");
+  fb.innerHTML = (ok ? "<b>✓ Correct.</b> " : "<b>✗ Not quite.</b> ") + q.why;
+  $("next-btn").disabled = false;
+  $("q-opts").classList.add("locked");
+  if(ok) state.score++;
+  $("score-now").textContent = state.score;
+}
+
+/* ---------- MCQ (instant) ---------- */
+function renderMCQ(q){
+  const opts = $("q-opts");
+  const letters = ["A","B","C","D","E","F"];
   q.options.forEach((opt, i) => {
     const div = document.createElement("button");
-    div.className = "opt";
-    div.type = "button";
+    div.className = "opt"; div.type = "button";
     div.innerHTML = `<span class="letter">${letters[i]}</span><span>${opt}</span>`;
-    div.addEventListener("click", () => pick(i, div));
+    div.addEventListener("click", () => {
+      if(opts.classList.contains("locked")) return;
+      const allOpts = opts.querySelectorAll(".opt");
+      allOpts.forEach((o, idx) => {
+        o.setAttribute("disabled","true"); o.style.pointerEvents = "none";
+        if(idx === q.a) o.classList.add("correct");
+        if(idx === i && idx !== q.a) o.classList.add("wrong");
+      });
+      const ok = i === q.a;
+      state.answers.push({ qIndex: state.qIndex, type:'mcq', picked: i, correct: q.a, ok });
+      showFeedback(ok, q);
+    });
     opts.appendChild(div);
   });
 }
 
-function pick(i, el){
-  if(el.parentElement.classList.contains("locked")) return;
-  // lock all
-  const mod = MODULES[state.module];
-  const q = mod.questions[state.qIndex];
-  const allOpts = el.parentElement.querySelectorAll(".opt");
-  allOpts.forEach((o, idx) => {
-    o.setAttribute("disabled","true");
-    o.style.pointerEvents = "none";
-    if(idx === q.a) o.classList.add("correct");
-    if(idx === i && idx !== q.a) o.classList.add("wrong");
+/* ---------- True/False (instant) ---------- */
+function renderTF(q){
+  const opts = $("q-opts");
+  const row = document.createElement("div");
+  row.className = "tf-row";
+  [["True", true, "👍"], ["False", false, "👎"]].forEach(([label, val, ic]) => {
+    const b = document.createElement("button");
+    b.className = "tf-btn"; b.type = "button";
+    b.dataset.val = val ? "T" : "F";
+    b.innerHTML = `<span class="ic">${ic}</span>${label}`;
+    b.addEventListener("click", () => {
+      if(opts.classList.contains("locked")) return;
+      const ok = val === q.a;
+      [...row.children].forEach(c => {
+        c.setAttribute("disabled","true"); c.style.pointerEvents = "none";
+        const cVal = c.dataset.val === "T";
+        if(cVal === q.a) c.classList.add("correct");
+        if(c === b && !ok) c.classList.add("wrong");
+      });
+      state.answers.push({ qIndex: state.qIndex, type:'tf', picked: val, correct: q.a, ok });
+      showFeedback(ok, q);
+    });
+    row.appendChild(b);
   });
-  el.parentElement.classList.add("locked");
-  const ok = i === q.a;
-  if(ok) state.score++;
-  state.answers.push({ qIndex: state.qIndex, picked: i, correct: q.a, ok });
-  $("score-now").textContent = state.score;
+  opts.appendChild(row);
+}
 
-  const fb = $("q-feedback");
-  fb.classList.add("show");
-  fb.classList.add(ok ? "good" : "bad");
-  fb.innerHTML = (ok ? "<b>✓ Correct.</b> " : "<b>✗ Not quite.</b> ") + q.why;
+/* ---------- Multi-select (check-then-grade) ---------- */
+function renderMulti(q){
+  const opts = $("q-opts");
+  opts.classList.add("multi");
+  const hint = document.createElement("div");
+  hint.className = "multi-hint";
+  hint.textContent = `Pick all that apply — there ${q.a.length===1?'is 1 correct answer':'are '+q.a.length+' correct answers'}.`;
+  opts.appendChild(hint);
+  _qState = { picks: new Set() };
+  q.options.forEach((opt, i) => {
+    const div = document.createElement("button");
+    div.className = "opt"; div.type = "button";
+    div.innerHTML = `<span class="letter"></span><span>${opt}</span>`;
+    div.addEventListener("click", () => {
+      if(opts.classList.contains("locked")) return;
+      if(_qState.picks.has(i)){ _qState.picks.delete(i); div.classList.remove("picked"); }
+      else { _qState.picks.add(i); div.classList.add("picked"); }
+      $("check-btn").disabled = _qState.picks.size === 0;
+    });
+    opts.appendChild(div);
+  });
+  $("check-row").classList.add("show");
+  $("check-btn").onclick = () => {
+    const picked = [..._qState.picks].sort();
+    const correct = q.a.slice().sort();
+    const ok = arrEq(picked, correct);
+    // mark correctness on each option
+    opts.querySelectorAll(".opt").forEach((o, idx) => {
+      o.setAttribute("disabled","true"); o.style.pointerEvents = "none";
+      o.classList.remove("picked");
+      const isPicked = picked.includes(idx);
+      const isCorrect = correct.includes(idx);
+      if(isCorrect) o.classList.add("correct");
+      else if(isPicked) o.classList.add("wrong");
+    });
+    state.answers.push({ qIndex: state.qIndex, type:'multi', picked, correct, ok });
+    showFeedback(ok, q);
+    $("check-row").classList.remove("show");
+  };
+}
 
-  $("next-btn").disabled = false;
+/* ---------- Matching ---------- */
+function renderMatch(q){
+  const opts = $("q-opts");
+  const grid = document.createElement("div");
+  grid.className = "match-grid";
+  // Right values shuffled (deterministic by qIndex)
+  const rights = q.pairs.map(p => p.r);
+  const shuffled = seededShuffle(rights, state.module * 100 + state.qIndex);
+  _qState = { picks: new Array(q.pairs.length).fill("") };
+  q.pairs.forEach((p, i) => {
+    const row = document.createElement("div");
+    row.className = "match-row";
+    const left = document.createElement("div");
+    left.className = "match-left"; left.textContent = p.l;
+    const arr = document.createElement("div");
+    arr.className = "arr"; arr.textContent = "→";
+    const sel = document.createElement("select");
+    sel.className = "match-select";
+    sel.innerHTML = `<option value="">— pick a match —</option>` + shuffled.map(r => `<option value="${escapeAttr(r)}">${escapeHtml(r)}</option>`).join("");
+    sel.addEventListener("change", () => {
+      _qState.picks[i] = sel.value;
+      $("check-btn").disabled = _qState.picks.some(v => !v);
+    });
+    row.appendChild(left); row.appendChild(arr); row.appendChild(sel);
+    grid.appendChild(row);
+  });
+  opts.appendChild(grid);
+  $("check-row").classList.add("show");
+  $("check-btn").onclick = () => {
+    let allOk = true;
+    grid.querySelectorAll(".match-row").forEach((row, i) => {
+      const sel = row.querySelector(".match-select");
+      sel.disabled = true;
+      const correctR = q.pairs[i].r;
+      if(_qState.picks[i] === correctR) row.classList.add("correct");
+      else { row.classList.add("wrong"); allOk = false; }
+    });
+    state.answers.push({ qIndex: state.qIndex, type:'match', picked: _qState.picks.slice(), correct: q.pairs.map(p => p.r), ok: allOk });
+    showFeedback(allOk, q);
+    $("check-row").classList.remove("show");
+  };
+}
+
+/* ---------- Ordering ---------- */
+function renderOrder(q){
+  const opts = $("q-opts");
+  // pool (top) and your order (bottom)
+  const wrap = document.createElement("div");
+  const pool = document.createElement("div"); pool.className = "order-pool";
+  const list = document.createElement("div"); list.className = "order-list";
+  const poolLabel = document.createElement("div"); poolLabel.className = "order-label"; poolLabel.textContent = "Available items — click to add in order";
+  const listLabel = document.createElement("div"); listLabel.className = "order-label"; listLabel.textContent = "Your order — click an item to send it back";
+  // shuffle items by original index
+  const idxOrder = q.items.map((_, i) => i);
+  const shuffled = seededShuffle(idxOrder, state.module * 100 + state.qIndex + 7);
+  _qState = { picked: [] };
+  function renderState(){
+    pool.innerHTML = ""; list.innerHTML = "";
+    shuffled.forEach(idx => {
+      if(_qState.picked.includes(idx)) return;
+      const it = document.createElement("button");
+      it.className = "order-item"; it.type = "button"; it.textContent = q.items[idx];
+      it.addEventListener("click", () => {
+        if(opts.classList.contains("locked")) return;
+        _qState.picked.push(idx); renderState();
+      });
+      pool.appendChild(it);
+    });
+    _qState.picked.forEach((idx, pos) => {
+      const it = document.createElement("button");
+      it.className = "order-item"; it.type = "button";
+      it.innerHTML = `<span class="pos">${pos+1}</span> ${q.items[idx]}`;
+      it.addEventListener("click", () => {
+        if(opts.classList.contains("locked")) return;
+        _qState.picked.splice(pos, 1); renderState();
+      });
+      list.appendChild(it);
+    });
+    $("check-btn").disabled = _qState.picked.length !== q.items.length;
+  }
+  wrap.appendChild(poolLabel); wrap.appendChild(pool);
+  wrap.appendChild(listLabel); wrap.appendChild(list);
+  opts.appendChild(wrap);
+  renderState();
+  $("check-row").classList.add("show");
+  $("check-btn").onclick = () => {
+    const correct = q.items.map((_, i) => i);
+    const ok = arrEq(_qState.picked, correct);
+    // disable + mark
+    list.querySelectorAll(".order-item").forEach((it, pos) => {
+      it.classList.add("locked"); it.style.pointerEvents = "none";
+      const idx = _qState.picked[pos];
+      if(idx === pos) it.classList.add("correct");
+      else it.classList.add("wrong");
+    });
+    pool.querySelectorAll(".order-item").forEach(it => { it.style.pointerEvents = "none"; it.style.opacity = ".5"; });
+    state.answers.push({ qIndex: state.qIndex, type:'order', picked: _qState.picked.slice(), correct, ok });
+    showFeedback(ok, q);
+    $("check-row").classList.remove("show");
+  };
+}
+
+function escapeAttr(s){
+  return String(s).replace(/[&<>"']/g, (c)=>({ "&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;" }[c]));
 }
 
 $("next-btn").addEventListener("click", () => {
@@ -903,15 +1332,76 @@ function finish(){
   lines.push("Answers:");
   state.answers.forEach((a, i) => {
     const q = mod.questions[i];
-    const letters = ["A","B","C","D"];
-    lines.push("  Q" + (i+1) + ".  " + (a.ok ? "✓" : "✗") + "  Picked " + letters[a.picked] + "  ·  Correct: " + letters[a.correct]);
+    const letters = ["A","B","C","D","E","F"];
+    let pickedTxt = "", correctTxt = "";
+    if(a.type === 'mcq'){ pickedTxt = letters[a.picked]; correctTxt = letters[a.correct]; }
+    else if(a.type === 'tf'){ pickedTxt = a.picked ? "True" : "False"; correctTxt = a.correct ? "True" : "False"; }
+    else if(a.type === 'multi'){ pickedTxt = a.picked.map(x => letters[x]).join(","); correctTxt = a.correct.map(x => letters[x]).join(","); }
+    else if(a.type === 'match'){ pickedTxt = "matching"; correctTxt = a.ok ? "all paired" : "not all paired"; }
+    else if(a.type === 'order'){ pickedTxt = "ordering"; correctTxt = a.ok ? "sequence right" : "sequence off"; }
+    else { pickedTxt = String(a.picked); correctTxt = String(a.correct); }
+    lines.push("  Q" + (i+1) + " [" + (a.type||'mcq') + "]  " + (a.ok ? "✓" : "✗") + "  Picked " + pickedTxt + "  ·  Correct: " + correctTxt);
     lines.push("       " + q.q);
   });
   lines.push("");
   lines.push("— Sent automatically from the LET Assessment widget.");
   $("result-summary").textContent = lines.join("\n");
 
+  // Record completion for stamp + certificate
+  state.completed[state.module] = {
+    score: state.score,
+    total,
+    pct,
+    badge,
+    dateISO: new Date().toISOString().slice(0,10),
+  };
+
   show("results");
+}
+
+// Back to modules from results
+$("back-to-modules").addEventListener("click", () => {
+  // wipe per-quiz state but keep name + completed map
+  state.module = null;
+  state.qIndex = 0;
+  state.answers = [];
+  state.score = 0;
+  state.done = false;
+  state.timedOut = false;
+  stopTimer();
+  show("modules");
+});
+
+// Certificate buttons
+$("result-to-certificate").addEventListener("click", () => show("certificate"));
+$("see-certificate").addEventListener("click", () => show("certificate"));
+$("cert-back").addEventListener("click", () => show("modules"));
+$("cert-print").addEventListener("click", () => window.print());
+
+function renderCertificate(){
+  $("cert-name").textContent = state.name || "—";
+  $("cert-date").textContent = new Date().toISOString().slice(0,10);
+  const grid = $("cert-scores");
+  grid.innerHTML = "";
+  let totalPct = 0;
+  for(let m = 1; m <= 4; m++){
+    const c = state.completed[m] || {};
+    const mod = MODULES[m];
+    const card = document.createElement("div");
+    card.className = "cert-score";
+    const pct = c.pct ?? "—";
+    if(c.pct != null) totalPct += c.pct;
+    card.innerHTML = `<span class="mn">${mod.name}</span><span class="sn">${c.score ?? "—"} / ${c.total ?? mod.questions.length} · ${pct}${c.pct!=null?'%':''} · ${c.badge ? c.badge.split(' — ')[0] : '—'}</span>`;
+    grid.appendChild(card);
+  }
+  const overall = Math.round(totalPct / 4);
+  let verdict;
+  if(overall === 100) verdict = "🪙 Verdict: Legora Sensei. Get a cape made.";
+  else if(overall >= 90) verdict = "🌟 Verdict: Trainer of considerable repute. Earned.";
+  else if(overall >= 80) verdict = "✨ Verdict: Solidly Trainer-Ready. Go forth.";
+  else if(overall >= 70) verdict = "🌿 Verdict: Capable enabler. Bring notes.";
+  else verdict = "📚 Verdict: Have a quick rewatch of the rocky bits, then go forth bravely.";
+  $("cert-verdict").textContent = verdict + "  ·  Overall: " + overall + "%";
 }
 
 function buildMailtoArtefacts(){
